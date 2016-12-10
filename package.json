@@ -1,0 +1,25 @@
+{
+  "name": "simple-vue-validator",
+  "version": "1.0.0",
+  "description": "lightweight yet flexible validation lib for vue.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/semisleep/simple-vue-validator.git"
+  },
+  "keywords": [
+    "validation",
+    "form",
+    "vue",
+    "vue.js"
+  ],
+  "author": "semisleep",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/semisleep/simple-vue-validator/issues"
+  },
+  "homepage": "https://github.com/semisleep/simple-vue-validator#readme"
+}
