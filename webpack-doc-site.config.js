@@ -2,10 +2,12 @@
 
 var path = require('path');
 var webpack = require('webpack');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: {
-    'examples': './doc-site/examples.js'
+    'examples': './doc-site/examples.js',
+    'style': './doc-site/style.js'
   },
   output: {
     path: path.resolve(__dirname, 'doc-site/dist'),
@@ -45,7 +47,7 @@ module.exports = {
       },
       {
         test: /\.css/,
-        loaders: ['style-loader', 'css-loader?sourceMap', 'postcss-loader']
+        loaders: ExtractTextPlugin.extract(['css-loader?sourceMap', 'postcss-loader'])
       }
     ]
   },
@@ -61,7 +63,9 @@ module.exports = {
   devtool: '#source-map'
 };
 
-module.exports.plugins = [];
+module.exports.plugins = [
+  new ExtractTextPlugin('styles/[name].css')
+];
 
 if (process.env.NODE_ENV === 'production') {
   // http://vue-loader.vuejs.org/en/workflow/production.html

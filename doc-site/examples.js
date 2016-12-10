@@ -1,7 +1,5 @@
 'use strict';
 
-require('./examples.css');
-
 var Vue = require('vue');
 var VueSimpleValidator = require('../src');
 var App = require('./vue/App.vue');
