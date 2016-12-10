@@ -1,6 +1,7 @@
 <template>
-  <div class="test">
-    {{say}}
+  <div>
+    <LeftNavBar />
+    <MainContent />
   </div>
 </template>
 
@@ -9,8 +10,9 @@
 
   module.exports = {
     name: 'App',
-    data: function () {
-      return {say: 'lala'}
+    components: {
+      'LeftNavBar': require('./LeftNavBar.vue'),
+      'MainContent': require('./MainContent.vue')
     }
   }
 </script>
