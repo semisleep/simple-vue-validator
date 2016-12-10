@@ -1,0 +1,25 @@
+{
+  "browser": false,
+  "node": true,
+  "esnext": true,
+  "bitwise": true,
+  "camelcase": false,
+  "curly": true,
+  "eqeqeq": false,
+  "immed": true,
+  "indent": 2,
+  "newcap": true,
+  "noarg": true,
+  "quotmark": "single",
+  "undef": true,
+  "unused": true,
+  "strict": true,
+  "jquery": false,
+  "latedef": false,
+  "futurehostile": false,
+  "globals": {
+    "window": true,
+    "document": true,
+    "Promise": true
+  }
+}
