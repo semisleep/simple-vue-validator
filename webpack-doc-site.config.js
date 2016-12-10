@@ -5,11 +5,10 @@ var webpack = require('webpack');
 
 module.exports = {
   entry: {
-    'lib': './examples/lib.js',
-    'examples': './examples/examples.js'
+    'examples': './doc-site/examples.js'
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'doc-site/dist'),
     publicPath: '/dist/',
     filename: '[name].js'
   },
@@ -57,17 +56,12 @@ module.exports = {
     inline: true,
     // https: true,
     port: 8080,
-    contentBase: path.resolve(__dirname, 'examples')
+    contentBase: path.resolve(__dirname, 'doc-site')
   },
   devtool: '#source-map'
 };
 
-module.exports.plugins = [
-  new webpack.ProvidePlugin({
-    $: 'jquery',
-    jQuery: 'jquery'
-  })
-];
+module.exports.plugins = [];
 
 if (process.env.NODE_ENV === 'production') {
   // http://vue-loader.vuejs.org/en/workflow/production.html

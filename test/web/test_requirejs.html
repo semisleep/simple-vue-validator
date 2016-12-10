@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test - Simple Vue Validator</title>
+</head>
+<body>
+
+<div>Test here!</div>
+
+<script type="text/javascript" src="http://requirejs.org/docs/release/2.3.2/comments/require.js"></script>
+
+<script type="text/javascript">
+
+  requirejs.config({
+    baseUrl: 'dist'
+  });
+
+  requirejs(['plugin'], function(plugin) {
+    alert(plugin.name);
+  });
+
+</script>
+
+</body>
+</html>
