@@ -6,7 +6,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: {
-    'examples': './doc-site/examples.js',
+    'doc': './doc-site/doc.js',
     'style': './doc-site/style.js'
   },
   output: {

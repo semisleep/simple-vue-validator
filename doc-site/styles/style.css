@@ -1,0 +1,336 @@
+/* lato-300 - latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Lato Light'), local('Lato-Light'),
+  url('../fonts/lato-v11-latin-300.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+  url('../fonts/lato-v11-latin-300.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* lato-300italic - latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 300;
+  src: local('Lato Light Italic'), local('Lato-LightItalic'),
+  url('../fonts/lato-v11-latin-300italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+  url('../fonts/lato-v11-latin-300italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* lato-regular - latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'),
+  url('../fonts/lato-v11-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+  url('../fonts/lato-v11-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* lato-italic - latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Lato Italic'), local('Lato-Italic'),
+  url('../fonts/lato-v11-latin-italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+  url('../fonts/lato-v11-latin-italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* lato-900 - latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Lato Black'), local('Lato-Black'),
+  url('../fonts/lato-v11-latin-900.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+  url('../fonts/lato-v11-latin-900.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* lato-900italic - latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 900;
+  src: local('Lato Black Italic'), local('Lato-BlackItalic'),
+  url('../fonts/lato-v11-latin-900italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+  url('../fonts/lato-v11-latin-900italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+html,
+body {
+  font-size: 16px;
+  font-family: "Lato", "Helvetica Neue", Helvetica,  Arial, sans-serif;
+  color: #374853;
+  font-weight: lighter;
+  background-color: #fff;
+}
+
+body,
+body * {
+  box-sizing: border-box;
+}
+
+a,
+a:active,
+a:focus,
+a:hover,
+a:active:focus,
+a:active:hover,
+a:hover:focus,
+a:active:focus:hover {
+  outline: 0;
+  text-decoration: none;
+  color: #41b883;
+}
+
+hr {
+  margin: 20px 0;
+  border-top: solid #e8e8e8 1px;
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .hidden-mobile {
+    display: none;
+  }
+}
+
+.layout-left-nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  padding: 20px 40px;
+  height: 100vh;
+  overflow-y: auto;
+  border-right: solid #e8e8e8 1px;
+}
+
+@media (max-width: 768px) {
+  .layout-left-nav-bar {
+    display: none;
+  }
+}
+
+.layout-left-nav-bar .left-nav {
+  padding-left: 0;
+}
+
+.layout-left-nav-bar .left-nav li {
+  list-style: none;
+}
+
+.layout-left-nav-bar .left-nav li a {
+  color: inherit;
+}
+
+.layout-left-nav-bar .left-nav li a:hover {
+  background-color: transparent;
+}
+
+.layout-left-nav-bar .left-nav li.heading {
+  font-size: 12px;
+  font-weight: normal;
+  padding: 20px 0 10px 0;
+  color: #41b883;
+  text-transform: uppercase;
+}
+
+.layout-left-nav-bar .left-nav li.item {
+  padding:3px 5px;
+}
+
+.layout-main {
+  margin-left: 260px;
+  padding: 40px;
+}
+
+@media (max-width: 768px) {
+  .layout-main {
+    margin-left: 0;
+    padding: 20px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .layout-main {
+    padding: 40px 60px;
+  }
+}
+
+.layout-main .hero {
+  padding: 40px 0 80px 0;
+}
+
+.layout-content-block {
+  margin: 30px 0;
+}
+
+.layout-content-block .chapter-title {
+  text-align: center;
+  font-weight: normal;
+  color: #41b883;
+  text-transform: uppercase;
+}
+
+.layout-content-block .section-title {
+  position: relative;
+  font-size: 20px;
+  font-weight: normal;
+  margin: 30px 0 15px 0;
+}
+
+.layout-content-block .section-title:after {
+  content: '#';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -20px;
+  color: #41b883;
+  font-style: italic;
+}
+
+.layout-content-block .section-content {
+  margin: 15px 0;
+}
+
+.layout-content-block .tab-container {
+  display: flex;
+}
+
+.layout-content-block .tab-container .tab {
+  padding: 0 25px;
+  line-height: 40px;
+  color: #9ba3a9;
+  background-color: #fff;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.layout-content-block .tab-container .tab.active {
+  color: #374853;
+  background-color: #f5f2f0;
+  cursor: default;
+}
+
+.layout-content-block .page-container .page {
+  display: none;
+  background-color: #f5f2f0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.layout-content-block .page-container .page.active {
+  display: block;
+}
+
+.layout-content-block .page-container .page pre {
+  margin: 0;
+}
+
+.layout-form {
+  padding: 5px 0;
+  margin: 25px 25px;
+  font-size: 14px;
+  line-height: 20px;
+  border-top: solid #e6e4e4 1px;
+  border-bottom: solid #e6e4e4 1px;
+}
+
+.layout-form .form-group {
+  display: flex;
+  margin: 15px 0;
+}
+
+.layout-form .form-group .label {
+  width: 100px;
+  padding: 5px 20px 0 0;
+  font-weight: bold;
+}
+
+.layout-form .form-group.error .label {
+  color: #ff6666;
+}
+
+.layout-form .form-group .content {
+  width: 50%;
+  min-width: 120px;
+}
+
+.layout-form .form-group .message {
+  flex: 1;
+  padding: 5px 0 0 20px;
+}
+
+.layout-form .form-group.error .message {
+  color: #ff6666;
+  font-weight: bold;
+}
+
+.layout-form .form-group .form-control {
+  width: 100%;
+  font-size: 14px;
+  font-weight: lighter;
+}
+
+@media (max-width: 768px) {
+  .layout-form {
+    font-size: 12px;
+  }
+
+  .layout-form .form-group .label {
+    width: 60px;
+    padding-right: 10px;
+  }
+
+  .layout-form .form-group .form-control {
+    font-size: 12px;
+  }
+}
+
+.layout-form .form-group input.form-control {
+  padding: 4px 6px;
+  border: solid #e6e4e4 1px;
+  outline: none;
+}
+
+.layout-form .form-group input.form-control:focus {
+  border-color: #acacac;
+}
+
+.layout-form .form-group.error input.form-control {
+  border-color: #ff6666;
+}
+
+.layout-form .form-group button {
+  font-size: 12px;
+  font-weight: normal;
+  padding: 6px 10px;
+  color: #fff;
+  background-color: #41b883;
+  border-radius: 4px;
+  border: solid #39a073 1px;
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.layout-form .form-group button:focus {
+  background-color: #3dad7c;
+}
+
+.layout-form .form-group button:active {
+  background-color: #39a073;
+}

@@ -10,14 +10,3 @@
 
   </div>
 </template>
-
-<script type="text/javascript">
-  'use strict';
-
-  module.exports = {
-    name: 'MainContent',
-    components: {
-      'GettingStarted': require('./sections/GettingStarted.vue'),
-    }
-  }
-</script>
