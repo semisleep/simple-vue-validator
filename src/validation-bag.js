@@ -1,5 +1,7 @@
 'use strict';
 
+var _ = require('lodash');
+
 function ValidationBag() {
   this.errors = [];
   this.validatingRecords = [];
@@ -136,7 +138,7 @@ ValidationBag.prototype.setError = function (field, message) {
   this.removeErrors(field);
   this.resetPassed(field);
 
-  var messages = message instanceof Rule ? message.messages : (_.isArray(message) ? message : [message]);
+  var messages = _.isArray(message) ? message : [message];
   var addMessages = function (messages) {
     var hasError = false;
     messages.forEach(function (message) {

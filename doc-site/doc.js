@@ -14,7 +14,7 @@ Vue.component('LeftNavBar', require('./vue/LeftNavBar.vue'));
 Vue.component('MainContent', require('./vue/MainContent.vue'));
 
 // chapters
-Vue.component('GettingStarted', require('./vue/sections/GettingStarted.vue'));
+Vue.component('GettingStarted', require('./vue/chapters/GettingStarted.vue'));
 
 // examples
 Vue.component('BasicExample', require('./vue/examples/BasicExample.vue'));

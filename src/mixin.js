@@ -95,7 +95,7 @@ function generateGetter(vm, property) {
 }
 
 function watchProperties(vm, properties, callback) {
-  var debouncedCallback = _.debounce(callback, 300);
+  var debouncedCallback = _.debounce(callback, 200);
   properties.forEach(function (property) {
     vm.$watch(property, debouncedCallback);
   });
