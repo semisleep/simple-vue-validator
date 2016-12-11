@@ -240,12 +240,12 @@ hr {
 }
 
 .layout-form {
-  padding: 5px 0;
-  margin: 25px 25px;
+  padding: 20px;
+  margin: 25px;
   font-size: 14px;
   line-height: 20px;
-  border-top: solid #e6e4e4 1px;
-  border-bottom: solid #e6e4e4 1px;
+  box-shadow: 0px 3px 20px 0px rgba(0,0,0,0.3);
+  background-color: #fff;
 }
 
 .layout-form .form-group {
@@ -271,6 +271,9 @@ hr {
 .layout-form .form-group .message {
   flex: 1;
   padding: 5px 0 0 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .layout-form .form-group.error .message {
@@ -282,6 +285,12 @@ hr {
   width: 100%;
   font-size: 14px;
   font-weight: lighter;
+}
+
+.layout-form .form-group .actions {
+  margin-left: 100px;
+  width: 50%;
+  text-align: right;
 }
 
 @media (max-width: 768px) {

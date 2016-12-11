@@ -133,7 +133,7 @@ Rule.prototype.minLength = function (value, length) {
   if (!utils.isEmpty(value)) {
     var string = String(value);
     if (string.length < length) {
-      this.messages.push(utils.format(utils.templates.lengthMustGreaterThan, length));
+      this.messages.push(utils.format(utils.templates.lengthAtLeast, length));
     }
   }
   return this;
@@ -143,7 +143,7 @@ Rule.prototype.maxLength = function (value, length) {
   if (!utils.isEmpty(value)) {
     var string = String(value);
     if (string.length > length) {
-      this.messages.push(utils.format(utils.templates.lengthMustLessThan, length));
+      this.messages.push(utils.format(utils.templates.lengthAtMost, length));
     }
   }
   return this;
