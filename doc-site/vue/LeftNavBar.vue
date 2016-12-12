@@ -7,22 +7,21 @@
 
     <ul class="left-nav">
       <li class="heading">Getting Started</li>
-      <li class="item"><a href="#">Package content</a></li>
-      <li class="item"><a href="#">Installation</a></li>
-      <li class="item"><a href="#">Basic usage</a></li>
-      <li class="heading">Examples</li>
-      <li class="item"><a href="#">Basic form</a></li>
-      <li class="item"><a href="#">Contextified validators</a></li>
-      <li class="item"><a href="#">Data nesting</a></li>
-      <li class="item"><a href="#">Validation Groups</a></li>
-      <li class="item"><a href="#">Collections validation</a></li>
-      <li class="heading">API</li>
-      <li class="item"><a href="#">$v values</a></li>
-      <li class="item"><a href="#">$v methods</a></li>
-      <li class="item"><a href="#">Config keywords</a></li>
-      <li class="heading">Validations</li>
-      <li class="item"><a href="#">Builtin validators</a></li>
-      <li class="item"><a href="#">Custom validators</a></li>
+      <li class="item"><a href="#introduction">Introduction</a></li>
+      <li class="item"><a href="#installation">Installation</a></li>
+      <li class="item"><a href="#configuration">Configuration</a></li>
+      <li class="item"><a href="#basic_example">Basic Example</a></li>
+      <li class="heading">Usages & Examples</li>
+      <li class="item"><a href="#">Builtin Rules</a></li>
+      <li class="item"><a href="#">Customized Rule</a></li>
+      <li class="item"><a href="#">Cross Field Validation</a></li>
+      <li class="item"><a href="#">Async Validation</a></li>
+      <li class="item"><a href="#">Custom Component</a></li>
+      <li class="item"><a href="#">Dynamic Form</a></li>
+      <li class="heading">API & Reference</li>
+      <li class="item"><a href="#">validators</a></li>
+      <li class="item"><a href="#">rules</a></li>
+      <li class="item"><a href="#">$validate</a></li>
     </ul>
   </div>
 </template>
