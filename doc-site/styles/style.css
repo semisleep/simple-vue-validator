@@ -390,15 +390,17 @@ hr {
   width: 100%;
   font-weight: lighter;
   padding: 4px 6px;
-  border: solid #e6e4e4 1px;
+  border: solid #acacac 1px;
   outline: none;
 }
 
 .layout-form .form-group input[type="text"].form-control:focus,
 .layout-form .form-group input[type="password"].form-control:focus {
-  border-color: #acacac;
+  border-color: #374853;
 }
 
+.layout-form .form-group.error input[type="text"].form-control,
+.layout-form .form-group.error input[type="password"].form-control,
 .layout-form .form-group.error input[type="text"].form-control:focus,
 .layout-form .form-group.error input[type="password"].form-control:focus {
   border-color: #ff6666;
@@ -446,15 +448,15 @@ hr {
 .layout-form .form-group .btn-default {
   color: #374853;
   background-color: #fff;
-  border: solid #e6e4e4 1px;
+  border: solid #acacac 1px;
 }
 
 .layout-form .form-group .btn-default:focus {
-  border-color: #dbdbdb;
+  background-color: #eee;
 }
 
 .layout-form .form-group .btn-default:active {
-  border-color: #d2d2d2;
+  background-color: #ccc;
 }
 
 .layout-demo {
