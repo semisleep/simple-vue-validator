@@ -73,8 +73,7 @@ a:focus,
 a:hover,
 a:active:focus,
 a:active:hover,
-a:hover:focus,
-a:active:focus:hover {
+a:hover:focus {
   outline: 0;
   text-decoration: none;
   color: #41b883;
@@ -207,6 +206,7 @@ hr {
 
 .layout-content-block .tab-container {
   display: flex;
+  overflow-x: auto;
 }
 
 .layout-content-block .tab-container .tab {
@@ -237,6 +237,12 @@ hr {
 
 .layout-content-block .page-container .page pre {
   margin: 0;
+}
+
+.layout-content-block .page-container .page .indicator {
+  margin: 30px 0;
+  text-align: center;
+  font-size: 18px;
 }
 
 .layout-form {
@@ -342,4 +348,8 @@ hr {
 
 .layout-form .form-group button:active {
   background-color: #39a073;
+}
+
+.layout-demo {
+  margin: 20px 0;
 }

@@ -64,7 +64,13 @@ module.exports = {
 };
 
 module.exports.plugins = [
-  new ExtractTextPlugin('styles/[name].css')
+  new ExtractTextPlugin('styles/[name].css'),
+  new webpack.ProvidePlugin({
+    'window.$': 'jquery',
+    $: 'jquery',
+    'window.jQuery': 'jquery',
+    jQuery: 'jquery'
+  })
 ];
 
 if (process.env.NODE_ENV === 'production') {
