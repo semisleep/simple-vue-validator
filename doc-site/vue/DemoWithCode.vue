@@ -1,13 +1,13 @@
 <template>
   <div class="layout-demo">
     <div class="tab-container">
-      <a v-for="(tab, index) in tabs" class="tab" :class="{active: tab.active}" @click="select(index)" href="javascript:void(0)">
+      <a v-for="(tab, index) in tabs" class="tab" :class="{active: tab.active, demo: tab.type === 'demo'}" @click="select(index)" href="javascript:void(0)">
         <span class="hidden-mobile"><i class="fa" :class="tab.iconClass"></i>&nbsp;&nbsp;&nbsp;&nbsp;</span>
         {{ tab.name }}
       </a>
     </div>
     <div class="page-container">
-      <div v-for="page in pages" class="page" :class="{active: page.active}">
+      <div v-for="page in pages" class="page" :class="{active: page.active, demo: page.type === 'demo'}">
         <template v-if="page.type === 'demo'">
           <component v-bind:is="page.component"/>
         </template>
@@ -96,14 +96,14 @@
       data.theComponents.forEach(function (component, index) {
         if (index === 0) {
           // only demo the first component
-          data.tabs.push({active: true, name: 'DEMO', iconClass: 'fa-play'});
+          data.tabs.push({type: 'demo', active: true, name: 'DEMO', iconClass: 'fa-play'});
           data.pages.push({type: 'demo', active: true, component: component})
         }
         // html and js codes
-        data.tabs.push({active: false, name: multi ? component + '.html' : 'HTML', iconClass: 'fa-html5'});
-        data.tabs.push({active: false, name: multi ? component + '.js' : 'JavaScript', iconClass: 'fa-code'});
-        data.pages.push({type: 'code', active: false, component: component, code: null, language: 'html', error: false});
+        data.tabs.push({type: 'code', active: false, name: multi ? component + '.js' : 'JavaScript', iconClass: 'fa-code'});
+        data.tabs.push({type: 'code', active: false, name: multi ? component + '.html' : 'HTML', iconClass: 'fa-html5'});
         data.pages.push({type: 'code', active: false, component: component, code: null, language: 'javascript', error: false});
+        data.pages.push({type: 'code', active: false, component: component, code: null, language: 'html', error: false});
       });
       return data;
     },

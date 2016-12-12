@@ -11,17 +11,18 @@
       <li class="item"><a href="#installation">Installation</a></li>
       <li class="item"><a href="#configuration">Configuration</a></li>
       <li class="item"><a href="#basic_example">Basic Example</a></li>
+      <li class="item"><a href="#explanation">Explanation</a></li>
       <li class="heading">Usages & Examples</li>
-      <li class="item"><a href="#">Builtin Rules</a></li>
-      <li class="item"><a href="#">Customized Rule</a></li>
+      <li class="item"><a href="#">Built-in Rules</a></li>
+      <li class="item"><a href="#">Custom Rule</a></li>
       <li class="item"><a href="#">Cross Field Validation</a></li>
       <li class="item"><a href="#">Async Validation</a></li>
       <li class="item"><a href="#">Custom Component</a></li>
       <li class="item"><a href="#">Dynamic Form</a></li>
-      <li class="heading">API & Reference</li>
-      <li class="item"><a href="#">validators</a></li>
+      <li class="heading">API</li>
       <li class="item"><a href="#">rules</a></li>
-      <li class="item"><a href="#">$validate</a></li>
+      <li class="item"><a href="#">validation bag</a></li>
+      <li class="item"><a href="#">$validate()</a></li>
     </ul>
   </div>
 </template>
