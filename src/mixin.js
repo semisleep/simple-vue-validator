@@ -97,7 +97,10 @@ function generateGetter(vm, property) {
 function watchProperties(vm, properties, callback) {
   var debouncedCallback = _.debounce(callback, 200);
   properties.forEach(function (property) {
-    vm.$watch(property, debouncedCallback);
+    vm.$watch(property, function() {
+      vm.validation.setTouched(property);
+      debouncedCallback.call();
+    });
   });
 }
 

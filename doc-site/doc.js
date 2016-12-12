@@ -21,6 +21,8 @@ Vue.component('APIAndReference', require('./vue/chapters/APIAndReference.vue'));
 Vue.component('BasicExample', require('./vue/examples/BasicExample.vue'));
 Vue.component('BuiltinRulesExample', require('./vue/examples/BuiltinRulesExample.vue'));
 Vue.component('CustomRuleExample', require('./vue/examples/CustomRuleExample.vue'));
+Vue.component('CrossFieldValidationExample1', require('./vue/examples/CrossFieldValidationExample1.vue'));
+Vue.component('CrossFieldValidationExample2', require('./vue/examples/CrossFieldValidationExample2.vue'));
 
 new Vue({
   el: '#app',
