@@ -3,15 +3,14 @@
 require('prismjs');
 
 var Vue = require('vue');
-var VueResource = require('vue-resource');
 var VueSimpleValidator = require('../src');
 var App = require('./vue/App.vue');
 
-Vue.use(VueResource);
 Vue.use(VueSimpleValidator);
 
 Vue.component('LeftNavBar', require('./vue/LeftNavBar.vue'));
 Vue.component('MainContent', require('./vue/MainContent.vue'));
+Vue.component('DemoWithCode', require('./vue/DemoWithCode.vue'));
 
 // chapters
 Vue.component('GettingStarted', require('./vue/chapters/GettingStarted.vue'));
