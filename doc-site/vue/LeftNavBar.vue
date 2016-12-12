@@ -21,7 +21,7 @@
       <li class="item"><a href="#">Dynamic Form</a></li>
       <li class="heading">API</li>
       <li class="item"><a href="#">rules</a></li>
-      <li class="item"><a href="#">validation bag</a></li>
+      <li class="item"><a href="#">ValidationBag</a></li>
       <li class="item"><a href="#">$validate()</a></li>
     </ul>
   </div>
