@@ -14,6 +14,8 @@ Vue.component('DemoWithCode', require('./vue/DemoWithCode.vue'));
 
 // chapters
 Vue.component('GettingStarted', require('./vue/chapters/GettingStarted.vue'));
+Vue.component('UsagesAndExamples', require('./vue/chapters/UsagesAndExamples.vue'));
+Vue.component('APIAndReference', require('./vue/chapters/APIAndReference.vue'));
 
 // examples
 Vue.component('BasicExample', require('./vue/examples/BasicExample.vue'));
