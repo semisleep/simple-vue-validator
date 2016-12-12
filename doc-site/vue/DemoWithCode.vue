@@ -158,8 +158,7 @@
           .bind(this)
           .then(function () {
             this.$nextTick(function () {
-              var pres = this.$el.querySelectorAll('pre code');
-              pres.forEach(function (pre) {
+              $(this.$el).find('pre code').each(function(index, pre) {
                 prism.highlightElement(pre);
               });
             }.bind(this));

@@ -13,6 +13,24 @@
       <pre><code class="language-dash">npm install --save simple-vue-validator</code></pre>
       <pre><code class="language-javascript">window.alert('lala');</code></pre>
     </div>
+    <div class="section-title">Installation</div>
+    <div class="section-content">
+      Package is installable via npm.
+      <pre><code class="language-dash">npm install --save simple-vue-validator</code></pre>
+      <pre><code class="language-javascript">window.alert('lala');</code></pre>
+    </div>
+    <div class="section-title">Installation</div>
+    <div class="section-content">
+      Package is installable via npm.
+      <pre><code class="language-dash">npm install --save simple-vue-validator</code></pre>
+      <pre><code class="language-javascript">window.alert('lala');</code></pre>
+    </div>
+    <div class="section-title">Installation</div>
+    <div class="section-content">
+      Package is installable via npm.
+      <pre><code class="language-dash">npm install --save simple-vue-validator</code></pre>
+      <pre><code class="language-javascript">window.alert('lala');</code></pre>
+    </div>
     <DemoWithCode :components="'BasicExample'" />
   </div>
 </template>
