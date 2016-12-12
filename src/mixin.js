@@ -37,9 +37,9 @@ var mixin = {
           });
           var rule = validator.apply(this, args);
           if (rule) {
-            if (!rule.field) {
+            if (!rule._field) {
               // field defaults to the first property
-              rule.setField(properties[0]);
+              rule.field(properties[0]);
             }
             return this.validation.checkRule(rule);
           } else {
