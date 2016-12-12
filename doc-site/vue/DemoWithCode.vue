@@ -49,7 +49,7 @@
         var html = text.substring(text.indexOf('<template>') + '<template>'.length, text.lastIndexOf('</template>'));
         var javascript = text.substring(text.indexOf('>', text.indexOf('<script')) + '>'.length, text.lastIndexOf('<\/script>'));
         html = formatText(html);
-        javascript = formatText(javascript);
+        javascript = formatText(javascript.replace('../../../src/', 'simple-vue-validator'));
         return {
           html: html,
           javascript: javascript
