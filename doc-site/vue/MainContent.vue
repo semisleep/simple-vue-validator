@@ -7,6 +7,8 @@
     </div>
 
     <GettingStarted />
+    <UsagesAndExamples />
+    <APIAndReference />
 
   </div>
 </template>
