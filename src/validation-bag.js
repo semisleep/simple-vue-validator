@@ -133,6 +133,12 @@ ValidationBag.prototype.isPassed = function (field) {
   return !_.isEmpty(existingPassedRecords) && existingPassedRecords[0].value;
 };
 
+ValidationBag.prototype.reset = function () {
+  this.errors = [];
+  this.validatingRecords = [];
+  this.passedRecords = [];
+};
+
 // returns true if any error is added
 ValidationBag.prototype.setError = function (field, message) {
   this.removeErrors(field);
@@ -182,7 +188,7 @@ ValidationBag.prototype.setError = function (field, message) {
 };
 
 ValidationBag.prototype.checkRule = function (rule) {
-  return this.setError(rule.field, rule.messages);
+  return this.setError(rule._field, rule._messages);
 };
 
 var validatingId = 0;

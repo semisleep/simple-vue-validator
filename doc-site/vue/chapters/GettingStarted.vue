@@ -46,10 +46,68 @@ Vue.use(SimpleVueValidation);</code></pre>
     </div>
     <div id="basic_example" class="section-title">Basic Example</div>
     <div class="section-content">
-      First, you need to add the <span class="code">validators</span> property to your Vue instance / component, defines your validation rules in the <span class="code">validators</span> property,
+      First, you need to add the <span class="code">validators</span> object to your Vue instance / component, defines your validation rules in the <span class="code">validators</span> property,
       then use the <span class="code">validation</span> object in template to display validation result. Finally, call <span class="code">this.$validate()</span> method for form submission.
+      <DemoWithCode :components="'BasicExample'"/>
     </div>
-
-    <DemoWithCode :components="'BasicExample'"/>
+    <div id="explanation" class="section-title">Explanation</div>
+    <div class="section-sub-title">The validators object</div>
+    <div class="section-content">
+      The <span class="code">validators</span> object contains all the validation logic.
+      <pre><code class="language-javascript">validators: {
+  email: function(value) {
+    return Validator.value(value).required().email();
+  }
+}</code></pre>
+      <p>
+        The key of validator denotes the <b>name</b> of field in Vue model you want to observe and validate. <br/>
+        In the above example, it's the <span class="code">email</span>,
+        when validating nested fields you can use dot syntax for field name:
+      </p>
+      <pre><code class="language-javascript">{'person.email': ...}</code></pre>
+      <p>
+        In the case where multiple fields need to be watched and validated, e.g. <a href="#cross_field_validation"> Cross Field Validation</a>,
+        the field names are separated by dot:
+      </p>
+      <pre><code class="language-javascript">{'password, confirmPassword': function(password, confirmPassword) {...}}</code></pre>
+      <p>
+        The validator itself is a function which takes the <b>value</b> of the field in Vue model, executes validation logic and returns validation result. <br/>
+        In the above example, the email value is first provided to the <span class="code">Validator</span> using the <span class="code">value()</span> function,
+        then marked as required and validated against email format using <span class="code">required()</span> and <span class="code">email()</span> methods.
+      </p>
+      <pre><code class="language-javascript">function (value) {
+  return Validator.value(value).required().email();
+}</code></pre>
+      <div class="note">
+        Make sure to <b>return</b> the validation result to the validation framework, otherwise, the validation result will be ignored. <br/>
+        Also, set field value with <span class="code">value()</span> method if you are using built-in validation rules like <span class="code">required()</span>, <span class="code">email()</span> or <span class="code">length()</span>.
+        You can however omit this method call if you are using <a href="#custom_rule">Custom Rule</a>, because your custom function will validate the value directly.
+      </div>
+    </div>
+    <div class="section-sub-title">The validation field</div>
+    <div class="section-content">
+      <p>
+        The library expose a <span class="code">validation</span> field to your Vue/Component instance, in your template HTML,
+        you use this field to display validation results:
+      </p>
+      <pre><code class="language-html" v-pre>&lt;div class=&quot;form-group&quot; :class=&quot;{error: validation.hasError('email')}&quot;&gt;</code></pre>
+      <pre><code class="language-html" v-pre>&lt;div class=&quot;message&quot;&gt;{{ validation.firstError('email') }}&lt;/div&gt;</code></pre>
+      <p>
+        Checkout <a href="#r_validation_bag">validation bag API</a> for all the methods you can used to display validation related data.
+      </p>
+    </div>
+    <div class="section-sub-title">The $validate() method</div>
+    <div class="section-content">
+      The library adds a <span class="code">$validate()</span> method to your vue instance,
+      calling it triggers the validation of all fields. <br/>
+      This method returns a promise which would resolve to true if validation successes.
+      Using promise over boolean value allow the library to support <a href="#async_validation">Async Validation</a>.
+    </div>
+      <pre><code class="language-javascript">this.$validate()
+  .then(function (result) {
+    if (result) {
+      alert('Validation succeeded!');
+    }
+  });</code></pre>
   </div>
 </template>

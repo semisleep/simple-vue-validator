@@ -19,6 +19,7 @@ Vue.component('APIAndReference', require('./vue/chapters/APIAndReference.vue'));
 
 // examples
 Vue.component('BasicExample', require('./vue/examples/BasicExample.vue'));
+Vue.component('BuiltinRulesExample', require('./vue/examples/BuiltinRulesExample.vue'));
 
 new Vue({
   el: '#app',

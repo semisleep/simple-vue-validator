@@ -7,6 +7,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <title>Simple Vue Validator - Documentation</title>
   <link rel="stylesheet" href="dist/styles/style.css">
+
+  <script>
+    /* block IE 9 and below
+     ----------------------------------- */
+    (function() {
+      function isIE() {
+        var myNav = navigator.userAgent.toLowerCase();
+        return (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1]) : false;
+      }
+
+      if (isIE() && isIE() <= 9) {
+        function hideAll() {
+          document.body.innerHTML = '<div style="text-align: center; padding-top: 30px;">IE 9 or below is not supported!</div>';
+        }
+
+        window.onload = hideAll;
+        setTimeout(hideAll, 100);
+        setTimeout(hideAll, 1000);
+        hideAll();
+      }
+    })();
+  </script>
+
 </head>
 <body>
 

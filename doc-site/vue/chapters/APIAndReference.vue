@@ -1,7 +1,7 @@
 <template>
   <div class="layout-content-block">
     <hr/>
-    <div class="chapter-title">API & Reference</div>
+    <div class="chapter-title">API</div>
     <hr/>
     <div class="section-title">validators</div>
     <div class="section-content">
