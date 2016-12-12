@@ -6,6 +6,7 @@ function ValidationBag() {
   this.errors = [];
   this.validatingRecords = [];
   this.passedRecords = [];
+  this.touchedRecords = [];
 }
 
 ValidationBag.prototype.addError = function (field, message) {
@@ -103,40 +104,65 @@ ValidationBag.prototype.isValidating = function (field, id) {
 };
 
 ValidationBag.prototype.setPassed = function (field) {
-  var existingPassedRecords = this.passedRecords.filter(function (validated) {
-    return validated.field === field;
-  });
-  if (!_.isEmpty(existingPassedRecords)) {
-    existingPassedRecords[0].value = true;
-  } else {
-    this.passedRecords.push({field: field, value: true});
-  }
+  setValue(this.passedRecords, field);
 };
 
 ValidationBag.prototype.resetPassed = function (field) {
-  if (!field) {
-    this.passedRecords = [];
-  }
-
-  var existingPassedRecords = this.passedRecords.filter(function (validated) {
-    return validated.field === field;
-  });
-  if (!_.isEmpty(existingPassedRecords)) {
-    existingPassedRecords[0].value = false;
-  }
+  resetValue(this.passedRecords, field);
 };
 
 ValidationBag.prototype.isPassed = function (field) {
-  var existingPassedRecords = this.passedRecords.filter(function (validated) {
+  return isValueSet(this.passedRecords, field);
+};
+
+ValidationBag.prototype.setTouched = function (field) {
+  setValue(this.touchedRecords, field);
+};
+
+ValidationBag.prototype.resetTouched = function (field) {
+  resetValue(this.touchedRecords, field);
+};
+
+ValidationBag.prototype.isTouched = function (field) {
+  return isValueSet(this.touchedRecords, field);
+};
+
+function setValue(records, field) {
+  var existingRecords = records.filter(function (validated) {
     return validated.field === field;
   });
-  return !_.isEmpty(existingPassedRecords) && existingPassedRecords[0].value;
-};
+  if (!_.isEmpty(existingRecords)) {
+    existingRecords[0].value = true;
+  } else {
+    records.push({field: field, value: true});
+  }
+}
+
+function resetValue(records, field) {
+  if (!field) {
+    records.splice(0, records.length);
+    return;
+  }
+  var existingRecords = records.filter(function (validated) {
+    return validated.field === field;
+  });
+  if (!_.isEmpty(existingRecords)) {
+    existingRecords[0].value = false;
+  }
+}
+
+function isValueSet(records, field) {
+  var existingRecords = records.filter(function (validated) {
+    return validated.field === field;
+  });
+  return !_.isEmpty(existingRecords) && existingRecords[0].value;
+}
 
 ValidationBag.prototype.reset = function () {
   this.errors = [];
   this.validatingRecords = [];
   this.passedRecords = [];
+  this.touchedRecords = [];
 };
 
 // returns true if any error is added
