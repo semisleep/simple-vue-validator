@@ -20,7 +20,18 @@
     </div>
     <div class="section-title">Customized Rule</div>
     <div class="section-content">
-      <p>TODO</p>
+      <DemoWithCode :components="'CustomRuleExample'"/>
+      <p>
+        Use <span class="code">Validator.custom()</span> method for custom validation rule,
+        this method accepts a callback function to perform custom validation logic,
+        the callback function is expected to return an error message (or promise, see <a href="#async_valiation">Async Validation</a>) if validation fails.<br/>
+        Optionally, you can provide the callback function's execution context object as the second parameter.
+      </p>
+      <p>
+        In the above example, we are also using <span class="code">Validator.isEmpty()</span> method,
+        this method is internally used by <span class="code">Validator.required()</span> method to determine if a field value is empty,
+        since most validation rules apply only when the value is NOT empty, this method is also exposed as public API so that it can be used by custom code.
+      </p>
     </div>
     <div class="section-title">Cross Field Validation</div>
     <div class="section-content">
