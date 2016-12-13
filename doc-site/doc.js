@@ -23,6 +23,8 @@ Vue.component('BuiltinRulesExample', require('./vue/examples/BuiltinRulesExample
 Vue.component('CustomRuleExample', require('./vue/examples/CustomRuleExample.vue'));
 Vue.component('CrossFieldValidationExample1', require('./vue/examples/CrossFieldValidationExample1.vue'));
 Vue.component('CrossFieldValidationExample2', require('./vue/examples/CrossFieldValidationExample2.vue'));
+Vue.component('AsyncValidationExample1', require('./vue/examples/AsyncValidationExample1.vue'));
+Vue.component('AsyncValidationExample2', require('./vue/examples/AsyncValidationExample2.vue'));
 
 new Vue({
   el: '#app',

@@ -93,7 +93,7 @@ Vue.use(SimpleVueValidation);</code></pre>
       <pre><code class="language-html" v-pre>&lt;div class=&quot;form-group&quot; :class=&quot;{error: validation.hasError('email')}&quot;&gt;</code></pre>
       <pre><code class="language-html" v-pre>&lt;div class=&quot;message&quot;&gt;{{ validation.firstError('email') }}&lt;/div&gt;</code></pre>
       <p>
-        Checkout <a href="#r_validation_bag">validation bag API</a> for all the methods you can used to display validation related data.
+        Checkout <a href="#r_validation_bag">ValidationBag API</a> for all the methods you can used to display validation related data.
       </p>
     </div>
     <div class="section-sub-title">The $validate() method</div>
