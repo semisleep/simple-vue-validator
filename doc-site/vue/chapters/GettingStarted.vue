@@ -49,7 +49,7 @@ Vue.use(SimpleVueValidation);</code></pre>
     </div>
     <div id="basic_example" class="section-title">Basic Example</div>
     <div class="section-content">
-      First, you need to add the <span class="code">validators</span> object to your Vue instance / component, defines your validation rules in the <span class="code">validators</span> property,
+      First, you need to add the <span class="code">validators</span> object to your Vue instance / component, defines your validation rules in the <span class="code">validators</span> object,
       then use the <span class="code">validation</span> object in template to display validation result. Finally, call <span class="code">this.$validate()</span> method for form submission.
       <DemoWithCode :components="'BasicExample'"/>
     </div>
