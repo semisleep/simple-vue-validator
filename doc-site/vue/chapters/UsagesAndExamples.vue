@@ -121,7 +121,7 @@
     <div class="section-sub-title">Dedouncing & caching</div>
     <div class="section-content">
       <p>
-        You mind notice 2 problems in previous example:
+        You might notice 2 problems in previous example:
       </p>
       <ul>
         <li>The async validation is invoked again when you clicks submit, this is not necessary.</li>
@@ -143,7 +143,11 @@
     </div>
     <div class="section-title">Custom Component</div>
     <div class="section-content">
-      <p>TODO</p>
+      <DemoWithCode :components="['CustomComponentExample', 'CheckboxGroup']"/>
+      <p>
+        The library can work with any custom component as long as the component supports <span class="code">v-model</span>.
+        The above example demonstrates using a custom <span class="code">CheckboxGroup</span> component that wraps the <a href="http://icheck.fronteed.com/">icheck</a> library.
+      </p>
     </div>
     <div class="section-title">Dynamic Form</div>
     <div class="section-content">

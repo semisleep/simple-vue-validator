@@ -25,6 +25,8 @@ Vue.component('CrossFieldValidationExample1', require('./vue/examples/CrossField
 Vue.component('CrossFieldValidationExample2', require('./vue/examples/CrossFieldValidationExample2.vue'));
 Vue.component('AsyncValidationExample1', require('./vue/examples/AsyncValidationExample1.vue'));
 Vue.component('AsyncValidationExample2', require('./vue/examples/AsyncValidationExample2.vue'));
+Vue.component('CheckboxGroup', require('./vue/examples/CheckboxGroup.vue'));
+Vue.component('CustomComponentExample', require('./vue/examples/CustomComponentExample.vue'));
 
 new Vue({
   el: '#app',
