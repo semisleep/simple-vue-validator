@@ -250,16 +250,17 @@
         the library adds a <span class="code">ValidationBag</span> instance named <b>validation</b> to your vue / component instance.
         It contains various methods for you to display validation status / result in your template HTML.
       </p>
-      <table>
-        <thead>
-        <tr>
-          <th>Method</th>
-          <th>Parmas</th>
-          <th>Return</th>
-          <th>Description</th>
-        </tr>
-        </thead>
-        <tbody>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+          <tr>
+            <th>Method</th>
+            <th>Parmas</th>
+            <th>Return</th>
+            <th>Description</th>
+          </tr>
+          </thead>
+          <tbody>
           <tr>
             <td>hasError</td>
             <td>{String field?}</td>
@@ -317,8 +318,9 @@
               Resets all the validation status / results.
             </td>
           </tr>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </div>
     <div id="r_validate" class="section-title">$validate()</div>
     <div class="section-content">
