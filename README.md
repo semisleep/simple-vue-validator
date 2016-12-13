@@ -40,7 +40,7 @@ validators: {
       }
     }
 ```
-In the template HTML use the `valiation` object injected by the library the display valiation status / results.
+In the template HTML use the `valiation` object injected by the library to display validation status / results.
 ```html
 <div class="message">{{ validation.firstError('email') }}</div>
 ```
