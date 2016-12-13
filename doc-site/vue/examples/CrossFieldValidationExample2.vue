@@ -46,7 +46,7 @@
       };
     },
     validators: {
-      'other, fruit': function (fruit, other) {
+      'other, fruit': function (other, fruit) {
         if (fruit !== 'other') {
           return;
         }
