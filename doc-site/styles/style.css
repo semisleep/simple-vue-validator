@@ -237,6 +237,10 @@ hr {
   margin: 15px 0;
 }
 
+.layout-content-block .section-content a {
+  font-weight: normal;
+}
+
 .layout-content-block .section-content .note {
   margin: 20px 0;
   padding: 20px;
@@ -259,6 +263,34 @@ hr {
   position: absolute;
   top: 8px;
   left: -12px;
+}
+
+.layout-content-block .section-content .table-wrapper {
+  overflow-x: auto;
+}
+
+.layout-content-block .section-content table {
+  width: 100%;
+  min-width: 600px;
+  border-spacing: 0;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 14px;
+}
+
+.layout-content-block .section-content table tr {
+  border: solid #e8e8e8 1px;
+}
+
+.layout-content-block .section-content table thead tr,
+.layout-content-block .section-content table tbody tr:hover {
+  background-color: #f8f8f8;
+}
+
+.layout-content-block .section-content table tr th,
+.layout-content-block .section-content table tr td {
+  padding: 3px 8px;
+  min-width: 110px;
 }
 
 .layout-content-block .tab-container {
