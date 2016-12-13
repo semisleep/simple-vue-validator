@@ -27,6 +27,8 @@ Vue.component('AsyncValidationExample1', require('./vue/examples/AsyncValidation
 Vue.component('AsyncValidationExample2', require('./vue/examples/AsyncValidationExample2.vue'));
 Vue.component('CheckboxGroup', require('./vue/examples/CheckboxGroup.vue'));
 Vue.component('CustomComponentExample', require('./vue/examples/CustomComponentExample.vue'));
+Vue.component('DynamicForm', require('./vue/examples/DynamicForm.vue'));
+Vue.component('DynamicFormExample', require('./vue/examples/DynamicFormExample.vue'));
 
 new Vue({
   el: '#app',

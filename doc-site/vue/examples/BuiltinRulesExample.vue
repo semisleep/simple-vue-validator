@@ -2,7 +2,7 @@
   <div class="layout-form">
     <div class="form-group" :class="{error: validation.hasError('name')}">
       <div class="label">* Name</div>
-      <div class="content"><input type="text" class="form-control" v-model="name" /></div>
+      <div class="content"><input type="text" class="form-control" v-model="name" placeholder="only accepts alphabetic characters" /></div>
       <div class="message">{{ validation.firstError('name') }}</div>
     </div>
     <div class="form-group" :class="{error: validation.hasError('gender')}">
