@@ -33,6 +33,28 @@
         call <a href="#r_validator">Validator</a>'s methods to set validation rule,
         and finally and <b>return</b> it to the library.
       </p>
+      <p>
+        Additionally, you can pass the <span class="code">cache</span> and <span class="code">debounce</span> options to further control the validator's behavior.
+      </p>
+      <pre><code class="language-javascript">validators: {
+  'email': {
+    cache: true, // or 'all', 'last'
+    debounce: 500, // in milliseconds
+    validator: function(value) {...},
+  }
+}</code></pre>
+      <p>
+        The <span class="code">cache</span> option is useful for <a href="#async_validation">async validation</a>
+        that the validation results for the same field values are cached.<br/>
+        Beside setting it to <span class="code">true</span>,
+        you can also set it to <span class="code">'all'</span> which has the same effect as <span class="code">true</span>,
+        or <span class="code">'last'</span> which will only cache the last validation result, it's useful
+        if you only want to prevent duplicate async validation in form submission.
+      </p>
+      <p>
+        The <span class="code">debounce</span> option can be set with a number which is the millisecond to wait before user stops typing,
+        it's useful for saving ajax call so that it won't impact server performance.
+      </p>
     </div>
     <div id="r_validator" class="section-title">Validator / rules</div>
     <div class="section-content">
