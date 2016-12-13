@@ -5,7 +5,11 @@
     <hr/>
     <div id="r_install" class="section-title">install()</div>
     <div class="section-content">
-      <p>TODO</p>
+      <p>
+        Installing the library is the same as other Vue plugins,
+        you can also provide the <span class="code">templates</span> option to provide localized error messages.
+      <pre><code class="language-javascript">Vue.use(SimpleVueValidator, {templates: {...});</code></pre>
+      </p>
     </div>
     <div id="r_validators" class="section-title">validators object</div>
     <div class="section-content">
