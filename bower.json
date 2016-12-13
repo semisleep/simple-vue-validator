@@ -5,7 +5,7 @@
     "semisleep"
   ],
   "description": "lightweight yet flexible plugin for vue.js",
-  "main": "plugin.js",
+  "main": "dist/plugin.js",
   "keywords": [
     "validation",
     "form",
