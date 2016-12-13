@@ -49,7 +49,7 @@ Vue.use(SimpleVueValidation);</code></pre>
     </div>
     <div id="basic_example" class="section-title">Basic Example</div>
     <div class="section-content">
-      First, you need to add the <span class="code">validators</span> object to your Vue instance / component, defines your validation rules in the <span class="code">validators</span> object,
+      First, you need to add the <span class="code">validators</span> object to your vue / component instance, defines your validation rules in the <span class="code">validators</span> object,
       then use the <span class="code">validation</span> object in template to display validation result. Finally, call <span class="code">this.$validate()</span> method for form submission.
       <DemoWithCode :components="'BasicExample'"/>
     </div>
@@ -63,18 +63,18 @@ Vue.use(SimpleVueValidation);</code></pre>
   }
 }</code></pre>
       <p>
-        The key of validator denotes the <b>name</b> of field in Vue model you want to observe and validate. <br/>
+        The key of validator denotes the <b>name</b> of field in vue model you want to observe and validate. <br/>
         In the above example, it's the <span class="code">email</span>,
         when validating nested fields you can use dot syntax for field name:
       </p>
       <pre><code class="language-javascript">{'person.email': ...}</code></pre>
       <p>
         In the case where multiple fields need to be watched and validated, e.g. <a href="#cross_field_validation"> Cross Field Validation</a>,
-        the field names are separated by dot:
+        the field names are separated by comma:
       </p>
       <pre><code class="language-javascript">{'password, confirmPassword': function(password, confirmPassword) {...}}</code></pre>
       <p>
-        The validator itself is a function which takes the <b>value</b> of the field in Vue model, executes validation logic and returns validation result. <br/>
+        The validator itself is a function which takes the <b>value</b> of the field in vue model, executes validation logic and returns validation result. <br/>
         In the above example, the email value is first provided to the <span class="code">Validator</span> using the <span class="code">value()</span> function,
         then marked as required and validated against email format using <span class="code">required()</span> and <span class="code">email()</span> methods.
       </p>
@@ -90,7 +90,7 @@ Vue.use(SimpleVueValidation);</code></pre>
     <div class="section-sub-title">The validation field</div>
     <div class="section-content">
       <p>
-        The library expose a <span class="code">validation</span> field to your Vue/Component instance, in your template HTML,
+        The library expose a <span class="code">validation</span> field to your vue / component instance, in your template HTML,
         you use this field to display validation results:
       </p>
       <pre><code class="language-html" v-pre>&lt;div class=&quot;form-group&quot; :class=&quot;{error: validation.hasError('email')}&quot;&gt;</code></pre>
