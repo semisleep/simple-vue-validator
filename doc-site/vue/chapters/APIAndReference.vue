@@ -309,6 +309,14 @@
               Returns if given field has been touched by user.
             </td>
           </tr>
+          <tr>
+            <td>reset</td>
+            <td>none</td>
+            <td>undefined</td>
+            <td>
+              Resets all the validation status / results.
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>

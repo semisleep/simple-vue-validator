@@ -36,10 +36,10 @@
         cache: true,
         debounce: 500,
         validator: function (value) {
-          return Validator.custom(function () {
+          return Validator.value(value).required().custom(function () {
             if (!Validator.isEmpty(value)) {
               return Promise.delay(1000)
-                .then(function() {
+                .then(function () {
                   if (value !== 'vuejs.org') {
                     return 'Already taken!';
                   }
@@ -53,7 +53,7 @@
       submit: function () {
         this.$validate()
           .then(function (success) {
-            if (success) {
+            if (result) {
               alert('Validation succeeded!');
             }
           });
