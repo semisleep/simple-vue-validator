@@ -22,6 +22,7 @@ You can also install it via bower.
 ```
 bower install --save simple-vue-validator
 ```
+NOTE: for bower package, please use /dist/plugin.js.
 
 ## Configuration
 ```

@@ -31,6 +31,9 @@
       <pre><code class="language-dash">npm install --save simple-vue-validator</code></pre>
       You can also install it via bower.
       <pre><code class="language-dash">bower install --save simple-vue-validator</code></pre>
+      <div class="note">
+        For bower package, please use /dist/plugin.js
+      </div>
     </div>
     <div id="configuration" class="section-title">Configuration</div>
     <div class="section-content">
