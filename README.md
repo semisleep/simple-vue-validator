@@ -5,7 +5,7 @@ Simple Vue validator is a lightweight yet flexible plugin for Vue.js 2.0 that al
 It supports the following features:
 * Fully customized validation rules.
 * Cross field validation.
-* Async/ajax validation (with supports of loading indicator, result caching, debounced * user input).
+* Async/ajax validation (with supports of loading indicator, result caching, debounced user input).
 * Validating custom component.
 * Dynamic form / multiple validation instances.
 
