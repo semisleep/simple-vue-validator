@@ -73,19 +73,16 @@
       <DemoWithCode :components="'CrossFieldValidationExample2'"/>
       <p>
         This example demonstration the conditional validation use case,
-        where the <span class="code">other</span> field is only required when user selects the <span class="code">other fruit</span> option. <br/>
+        where the <span class="code">other</span> field is only required when user selects the "Other fruit (please specify)" option. <br/>
         Like the previous example, we set a <span class="code">submitted</span> field after user submitted,
-        we watch both <span class="code">fruit</span> and <span class="code">other</span> field,
+        we watch both <span class="code">other</span> and <span class="code">fruit</span> field,
         and only perform validation when the form is submitted or <span class="code">other</span> field is touched.<br/>
-        There are also some differences. First, we use <span class="code">v-if="fruit === 'other'"</span> to make the text field visible when <span class="code">other fruit</span> option is selected.
-        Secondary, we skip the validation if the value of <span class="code">fruit</span> is not <span class="code">'other'</span>.
+        There are also some differences. First, we use <span class="code">v-if="fruit === 'other'"</span> to make the text field visible only when "Other fruit (please specify)" option is selected.
+        Secondary, we skip the validation if the value of <span class="code">fruit !== 'other'</span>.
       </p>
       <div class="note">
-        Note that we called <span class="code">Validator.field('otherFruit')</span> to set the error field name,
-        because we used <span class="code">'fruit, other'</span> as validator key,
-        and the library by default would use the <b>first</b> property name as error field name,
-        which is <span class="code">'fruit'</span>, but it would be confusing as we are putting related error message around the <span class="code">other</span> field,
-        as such, we renamed the error field name to <span class="code">'otherFruit'</span>.
+        Note that the library would use the <b>first</b> property name as error field name, which is <span class="code">'other'</span>,
+        thus we use use it as opposed to <span class="code">'fruit'</span> when checking for error to display: <span class="code">validation.hasError('other')</span>.
       </div>
     </div>
     <div class="section-title">Async Validation</div>
@@ -115,7 +112,7 @@
         but you can use which ever promise library you prefer.
       </div>
       <pre><code class="language-javascript">&lt;i v-if=&quot;validation.isValidating('domain')&quot; class=&quot;fa fa-spin fa-spinner&quot;&gt;&lt;/i&gt;
-&lt;i v-if=&quot;validation.isPassed('domain')&quot; class=&quot;text-success fa fa-check-circle&quot;&gt;&lt;/i&gt;</code></pre>
+&lt;i v-if=&quot;domain &amp;&amp; validation.isPassed('domain')&quot; class=&quot;text-success fa fa-check-circle&quot;&gt;&lt;/i&gt;</code></pre>
       <p>
         In the template HTML, we use <span class="code">ValidationBag.isValidating()</span> to show an animating spinner when async validation is in progress,
         we also use <span class="code">ValidationBag.isPassed()</span> to show a green tick when validation successes.
@@ -123,10 +120,26 @@
     </div>
     <div class="section-sub-title">Dedouncing & caching</div>
     <div class="section-content">
+      <p>
+        You mind notice 2 problems in previous example:
+      </p>
+      <ul>
+        <li>The async validation is invoked again when you clicks submit, this is not necessary.</li>
+        <li>The async validation is activated every time user hits the keyboard, this would cause performance issue if we are making ajax request.</li>
+      </ul>
       <DemoWithCode :components="'AsyncValidationExample2'"/>
       <p>
-
+        To tackle the first problem, we use the <span class="code">cache</span> option and set it to true,
+        to tell the library we would like to cache all previous results. <br/>
+        For the second problem, we set the <span class="code">debounce</span> option to half a second,
+        so that the async validation is postponed until user stops typing for half a second. <br/>
+        Lastly, the validator function is now specified via the <span class="code">validator</span> option.
       </p>
+      <div class="note">
+        The <span class="code">cache</span> option can also take a <span class="code">'all'</span> string, which is equivalent to <span class="code">true</span>,
+        also the <span class="code">'last'</span> string would tell to framework to only cache the last result,
+        this is useful when you only want to enable caching for form submission.
+      </div>
     </div>
     <div class="section-title">Custom Component</div>
     <div class="section-content">
