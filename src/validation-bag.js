@@ -24,9 +24,13 @@ ValidationBag.prototype.removeErrors = function (field) {
   }
 };
 
+ValidationBag.prototype.hasError = function (field) {
+  return _.isUndefined(field) ? !!this.errors.length : !!this.firstError(field);
+};
+
 ValidationBag.prototype.firstError = function (field) {
   for (var i = 0; i < this.errors.length; i++) {
-    if (this.errors[i].field === field) {
+    if (_.isUndefined(field) || this.errors[i].field === field) {
       return this.errors[i].message;
     }
   }
@@ -42,11 +46,6 @@ ValidationBag.prototype.allErrors = function (field) {
       return e.message;
     });
 };
-
-ValidationBag.prototype.hasError = function (field) {
-  return _.isUndefined(field) ? !!this.errors.length : !!this.firstError(field);
-};
-
 
 ValidationBag.prototype.countErrors = function (field) {
   return _.isUndefined(field) ? this.errors.length : this.errors.filter(function (e) {
@@ -99,7 +98,7 @@ ValidationBag.prototype.isValidating = function (field, id) {
   }
 
   var existingValidatingRecords = this.validatingRecords.filter(function (validating) {
-    return validating.field === field && idMatched(validating);
+    return (_.isUndefined(field) || validating.field === field) && idMatched(validating);
   });
   return !_.isEmpty(existingValidatingRecords);
 };
@@ -129,8 +128,8 @@ ValidationBag.prototype.isTouched = function (field) {
 };
 
 function setValue(records, field) {
-  var existingRecords = records.filter(function (validated) {
-    return validated.field === field;
+  var existingRecords = records.filter(function (record) {
+    return record.field === field;
   });
   if (!_.isEmpty(existingRecords)) {
     existingRecords[0].value = true;
@@ -144,8 +143,8 @@ function resetValue(records, field) {
     records.splice(0, records.length);
     return;
   }
-  var existingRecords = records.filter(function (validated) {
-    return validated.field === field;
+  var existingRecords = records.filter(function (record) {
+    return record.field === field;
   });
   if (!_.isEmpty(existingRecords)) {
     existingRecords[0].value = false;
@@ -153,8 +152,8 @@ function resetValue(records, field) {
 }
 
 function isValueSet(records, field) {
-  var existingRecords = records.filter(function (validated) {
-    return validated.field === field;
+  var existingRecords = records.filter(function (record) {
+    return record.field === field;
   });
   return !_.isEmpty(existingRecords) && existingRecords[0].value;
 }

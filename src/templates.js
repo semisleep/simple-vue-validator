@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
   error: 'Error.',
   required: 'Required.',
