@@ -108,6 +108,10 @@ hr {
   text-align: right;
 }
 
+.text-success {
+  color: #41b883;
+}
+
 @media (max-width: 768px) {
   .hidden-mobile {
     display: none;
@@ -348,11 +352,11 @@ hr {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  font-weight: bold;
 }
 
 .layout-form .form-group.error .message {
   color: #ff6666;
-  font-weight: bold;
 }
 
 .layout-form .form-group .form-control {

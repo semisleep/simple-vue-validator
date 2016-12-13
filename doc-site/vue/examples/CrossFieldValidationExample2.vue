@@ -18,8 +18,8 @@
       </div>
     </div>
     <div v-if="fruit === 'other'" class="form-group" :class="{error: validation.hasError('otherFruit')}">
-      <div class="label">Specify:</div>
-      <div class="content"><input type="text" class="form-control" v-model="other"/></div>
+      <div class="label">* Other</div>
+      <div class="content"><input type="text" class="form-control" v-model="other" placeholder="please specify another fruit"/></div>
       <div class="message">{{ validation.firstError('otherFruit') }}</div>
     </div>
     <div class="form-group">

@@ -2,7 +2,7 @@
   <div class="layout-form">
     <div class="form-group" :class="{error: validation.hasError('oddNumber')}">
       <div class="label">Number</div>
-      <div class="content"><input type="text" class="form-control" v-model="oddNumber"/></div>
+      <div class="content"><input type="text" class="form-control" v-model="oddNumber" placeholder="only accept odd number"/></div>
       <div class="message">{{ validation.firstError('oddNumber') }}</div>
     </div>
   </div>
