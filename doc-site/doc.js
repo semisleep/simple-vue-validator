@@ -29,6 +29,7 @@ Vue.component('CheckboxGroup', require('./vue/examples/CheckboxGroup.vue'));
 Vue.component('CustomComponentExample', require('./vue/examples/CustomComponentExample.vue'));
 Vue.component('DynamicForm', require('./vue/examples/DynamicForm.vue'));
 Vue.component('DynamicFormExample', require('./vue/examples/DynamicFormExample.vue'));
+Vue.component('LocalizationExample', require('./vue/examples/LocalizationExample.vue'));
 
 new Vue({
   el: '#app',

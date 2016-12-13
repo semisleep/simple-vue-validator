@@ -158,5 +158,14 @@
         You can then invoke the validate method from parent to trigger validation logic.
       </p>
     </div>
+    <div id="localization" class="section-title">Localization</div>
+    <div class="section-content">
+      <DemoWithCode :components="'LocalizationExample'"/>
+      <p>
+        Use <span class="code">Validator.extendTemplates()</span> method (or <span class="code">Vue.use(SimpleVueValidator, {templates: {...})</span>) to provide your own error templates to the library.
+        Extend the built-in error text template, this method is mainly used for localization.
+        See <a href="https://github.com/semisleep/simple-vue-validator/blob/master/src/templates.js">templates.js</a> for all the text templates you can replace.
+      </p>
+    </div>
   </div>
 </template>

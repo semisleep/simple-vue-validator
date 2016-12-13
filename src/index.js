@@ -8,14 +8,11 @@ var mixin = require('./mixin');
 /* plugin install
  ----------------------------------- */
 
-var installed;
-
-function install(Vue) {
-  if (installed) {
-    return;
-  }
-  installed = true;
+function install(Vue, options) {
   Vue.mixin(mixin);
+  if (options && options.messages) {
+    Validator.extendTemplates(options.messages);
+  }
 }
 
 /* exports
