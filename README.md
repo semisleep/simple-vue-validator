@@ -43,6 +43,6 @@ In the template HTML use the `valiation` object injected by the library the disp
 ```html
 <div class="message">{{ validation.firstError('email') }}</div>
 ```
-##### Please checkout the [full documentation](http://simple-vue-validator.maijin.info) for more detail.
+Please checkout the [full documentation](http://simple-vue-validator.maijin.info) for more detail.
 
 ## license MIT
