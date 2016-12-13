@@ -1,0 +1,23 @@
+{
+  "name": "simple-vue-validator",
+  "homepage": "https://github.com/semisleep/simple-vue-validator",
+  "authors": [
+    "semisleep"
+  ],
+  "description": "lightweight yet flexible plugin for vue.js",
+  "main": "plugin.js",
+  "keywords": [
+    "validation",
+    "form",
+    "vue",
+    "vue.js"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
