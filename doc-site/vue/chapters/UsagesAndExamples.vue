@@ -43,7 +43,7 @@
         First of all, its value should match the <span class="code">password</span> field, this means <b>cross field validation</b>.
         Secondary, when the form is not already submitted, it should not be validated if user haven't touched it,
         otherwise we will see validation error message for <span class="code">repeat</span> field when user is typing in <span class="code">password</span> field for the first time!<br/>
-        Let take a look at the code:
+        Let's take a look at the code:
       </p>
       <pre><code class="language-javascript">submit: function () {
   this.submitted = true;
@@ -61,10 +61,10 @@
         In the validators config, we use <span class="code">'repeat, password'</span> as key, so that the library would watch these 2 fields for us,
         note that now we expect the library to provide values of both <span class="code">repeat</span> and <span class="code">password</span> in the validator function. <br/>
         In the code, we only perform validation when the form is already submitted or the <span class="code">repeat</span> field is already touched by user.
-        We also enforce that the value of <span class="code">repeat</span> field should math the value of <span class="code">password</span> field.
+        We also enforce that the value of <span class="code">repeat</span> field should match the value of <span class="code">password</span> field.
       </p>
       <p>
-        We use <span class="code">Validation.isTouch()</span> method to detect if a field is touched by user,
+        We use <span class="code">ValidationBag.isTouch()</span> method to detect if a field is touched by user,
         check out <a href="#r_validation_bag">ValidationBag API</a> to find more details about this method and other similar utility methods.
       </p>
     </div>
@@ -89,8 +89,44 @@
       </div>
     </div>
     <div class="section-title">Async Validation</div>
+    <div class="section-sub-title">Basic</div>
     <div class="section-content">
-      <p>TODO</p>
+      <DemoWithCode :components="'AsyncValidationExample1'"/>
+      <p>
+        Async validation is also supported by the <span class="code">Validator.custom()</span> method,
+        comparing to <a href="#custom_rule">Custom Rule</a>, the difference is that instead of returning the error message directly,
+        the callback function now returns a promise, the promise should resolve to error message if validation fails.
+      </p>
+      <pre><code class="language-javascript">return Validator.custom(function () {
+  if (!Validator.isEmpty(value)) {
+    return Promise.delay(1000)
+      .then(function() {
+        if (value !== 'vuejs.org') {
+          return 'Already taken!';
+        }
+      });
+  }
+});</code></pre>
+      <p>
+        Here we simply delay the execution for 1 second, in the real world, you probably will make an ajax request to server.
+      </p>
+      <div class="note">
+        In this example, we are using <a href="http://bluebirdjs.com">Blue Bird</a> for promise,
+        but you can use which ever promise library you prefer.
+      </div>
+      <pre><code class="language-javascript">&lt;i v-if=&quot;validation.isValidating('domain')&quot; class=&quot;fa fa-spin fa-spinner&quot;&gt;&lt;/i&gt;
+&lt;i v-if=&quot;validation.isPassed('domain')&quot; class=&quot;text-success fa fa-check-circle&quot;&gt;&lt;/i&gt;</code></pre>
+      <p>
+        In the template HTML, we use <span class="code">ValidationBag.isValidating()</span> to show an animating spinner when async validation is in progress,
+        we also use <span class="code">ValidationBag.isPassed()</span> to show a green tick when validation successes.
+      </p>
+    </div>
+    <div class="section-sub-title">Dedouncing & caching</div>
+    <div class="section-content">
+      <DemoWithCode :components="'AsyncValidationExample2'"/>
+      <p>
+
+      </p>
     </div>
     <div class="section-title">Custom Component</div>
     <div class="section-content">
