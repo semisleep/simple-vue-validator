@@ -17,10 +17,10 @@
         </label>
       </div>
     </div>
-    <div v-if="fruit === 'other'" class="form-group" :class="{error: validation.hasError('otherFruit')}">
+    <div v-if="fruit === 'other'" class="form-group" :class="{error: validation.hasError('other')}">
       <div class="label">* Other</div>
       <div class="content"><input type="text" class="form-control" v-model="other" placeholder="please specify another fruit"/></div>
-      <div class="message">{{ validation.firstError('otherFruit') }}</div>
+      <div class="message">{{ validation.firstError('other') }}</div>
     </div>
     <div class="form-group">
       <div class="actions">
@@ -46,12 +46,12 @@
       };
     },
     validators: {
-      'fruit, other': function (fruit, other) {
+      'other, fruit': function (fruit, other) {
         if (fruit !== 'other') {
           return;
         }
         if (this.submitted || this.validation.isTouched('other')) {
-          return Validator.field('otherFruit').value(other).required();
+          return Validator.value(other).required();
         }
       }
     },
