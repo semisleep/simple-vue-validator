@@ -13,16 +13,17 @@
       <li class="item"><a href="#basic_example">Basic Example</a></li>
       <li class="item"><a href="#explanation">Explanation</a></li>
       <li class="heading">Usages & Examples</li>
-      <li class="item"><a href="#">Built-in Rules</a></li>
-      <li class="item"><a href="#">Custom Rule</a></li>
-      <li class="item"><a href="#">Cross Field Validation</a></li>
-      <li class="item"><a href="#">Async Validation</a></li>
-      <li class="item"><a href="#">Custom Component</a></li>
-      <li class="item"><a href="#">Dynamic Form</a></li>
+      <li class="item"><a href="#built_in_rules">Built-in Rules</a></li>
+      <li class="item"><a href="#custom_rule">Custom Rule</a></li>
+      <li class="item"><a href="#cross_field_validation">Cross Field Validation</a></li>
+      <li class="item"><a href="#async_validation">Async Validation</a></li>
+      <li class="item"><a href="#custom_component">Custom Component</a></li>
+      <li class="item"><a href="#dynamic_form">Dynamic Form</a></li>
       <li class="heading">API</li>
-      <li class="item"><a href="#">rules</a></li>
-      <li class="item"><a href="#">ValidationBag</a></li>
-      <li class="item"><a href="#">$validate()</a></li>
+      <li class="item"><a href="#r_validators">validators property</a></li>
+      <li class="item"><a href="#r_validator">Validator / rules</a></li>
+      <li class="item"><a href="#r_validation_bag">ValidationBag</a></li>
+      <li class="item"><a href="#r_validate">$validate()</a></li>
     </ul>
   </div>
 </template>
