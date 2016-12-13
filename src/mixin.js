@@ -10,6 +10,8 @@ var mixin = {
     // validate methods contains all application validate codes
     var validateMethods = [];
     this.$options.validateMethods = validateMethods;
+    var unwatchCallbacks = [];
+    this.$options.unwatchCallbacks = unwatchCallbacks;
     // generate validate methods and watch properties change for validators
     var validators = this.$options.validators;
     if (validators) {
@@ -28,8 +30,9 @@ var mixin = {
           validator = validator.validator;
         }
         if (options.cache) {
-          // cache the last validation result, so that async validator can be fast when submitting the form
-          validator = cache(validator);
+          // cache the validation result, so that async validator can be fast when submitting the form
+          var option = options.cache === 'last' ? 'last' : 'all';
+          validator = cache(validator, option);
         }
         var validateMethod = function () {
           var args = getters.map(function (getter) {
@@ -46,11 +49,33 @@ var mixin = {
             return Promise.resolve(false);
           }
         }.bind(this);
-        //TODO unwatch
-        watchProperties(this, properties, validateMethod);
+
+        // add to validate method list
         validateMethods.push(validateMethod);
+
+        // watch change and invoke validate method
+        var validateMethodForWatch = validateMethod;
+        if (options.debounce) {
+          // eagerly resetting validating flag if debouncing is used.
+          // TODO what if custom field name is used?
+          var debouncedValidateMethod = _.debounce(validateMethod, parseInt(options.debounce));
+          var field = properties[0];
+          validateMethodForWatch = function () {
+            this.validation.resetPassed(field);
+            debouncedValidateMethod.apply(this, arguments);
+          }.bind(this);
+        }
+        watchProperties(this, properties, validateMethodForWatch).forEach(function (unwatch) {
+          unwatchCallbacks.push(unwatch);
+        });
       }, this);
     }
+  },
+
+  beforeDestroy: function () {
+    this.$options.unwatchCallbacks.forEach(function (unwatch) {
+      unwatch();
+    });
   },
 
   data: function () {
@@ -95,40 +120,55 @@ function generateGetter(vm, property) {
 }
 
 function watchProperties(vm, properties, callback) {
-  var debouncedCallback = _.debounce(callback, 200);
-  properties.forEach(function (property) {
-    vm.$watch(property, function() {
+  return properties.map(function (property) {
+    return vm.$watch(property, function () {
       vm.validation.setTouched(property);
-      debouncedCallback.call();
+      callback.call();
     });
   });
 }
 
-var validatorResultCache = {};
-
-function cache(validator) {
+function cache(validator, option) {
   return function () {
-    var args = Array.prototype.slice.call(arguments);
-    var cache = validatorResultCache[validator];
+    var cache = validator.cache;
     if (!cache) {
-      cache = {};
-      validatorResultCache[validator] = cache;
+      cache = [];
+      validator.cache = cache;
     }
-    if (!_.isUndefined(cache.args) && _.isEqual(args, cache.args)) {
-      return cache.rule;
+    var args = Array.prototype.slice.call(arguments);
+    var cachedResult = findInCache(cache, args);
+    if (!_.isUndefined(cachedResult)) {
+      return cachedResult;
     }
     var result = validator.apply(this, args);
-    if (result && result.then) {
-      return result.then(function (rule) {
-        cache.args = args;
-        cache.rule = rule;
-      });
-    } else {
-      cache.args = args;
-      cache.rule = result;
-      return result;
+    if (!_.isUndefined(result)) {
+      if (result.then) {
+        return result.tab(function (promiseResult) {
+          if (!_.isUndefined(promiseResult)) {
+            if (option !== 'all') {
+              cache.splice(0, cache.length);
+            }
+            cache.push({args: args, result: promiseResult});
+          }
+        });
+      } else {
+        if (option !== 'all') {
+          cache.splice(0, cache.length);
+        }
+        cache.push({args: args, result: result});
+        return result;
+      }
     }
   };
+}
+
+function findInCache(cache, args) {
+  var items = cache.filter(function (item) {
+    return _.isEqual(args, item.args);
+  });
+  if (!_.isEmpty(items)) {
+    return items[0].result;
+  }
 }
 
 module.exports = mixin;

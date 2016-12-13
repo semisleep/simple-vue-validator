@@ -6,7 +6,12 @@
       <div class="message">
         {{ validation.firstError('domain') }}
         <i v-if="validation.isValidating('domain')" class="fa fa-spinner fa-spin"></i>
-        <i v-if="validation.isPassed('domain')" class="text-success fa fa-check-circle"></i>
+        <i v-if="domain && validation.isPassed('domain')" class="text-success fa fa-check-circle"></i>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="actions">
+        <button type="button" class="btn btn-primary" @click="submit">Submit</button>
       </div>
     </div>
   </div>
@@ -27,17 +32,31 @@
       };
     },
     validators: {
-      domain: function (value) {
-        return Validator.custom(function () {
-          if (!Validator.isEmpty(value)) {
-            return Promise.delay(1000)
-              .then(function() {
-                if (value !== 'vuejs.org') {
-                  return 'Already taken!';
-                }
-              });
-          }
-        });
+      domain: {
+        cache: true,
+        debounce: 500,
+        validator: function (value) {
+          return Validator.custom(function () {
+            if (!Validator.isEmpty(value)) {
+              return Promise.delay(1000)
+                .then(function() {
+                  if (value !== 'vuejs.org') {
+                    return 'Already taken!';
+                  }
+                });
+            }
+          });
+        }
+      }
+    },
+    methods: {
+      submit: function () {
+        this.$validate()
+          .then(function (result) {
+            if (result) {
+              alert('Validation succeeded!');
+            }
+          });
       }
     }
   }
