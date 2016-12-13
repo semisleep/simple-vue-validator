@@ -104,8 +104,8 @@ Vue.use(SimpleVueValidation);</code></pre>
       Using promise over boolean value allow the library to support <a href="#async_validation">Async Validation</a>.
     </div>
       <pre><code class="language-javascript">this.$validate()
-  .then(function (result) {
-    if (result) {
+  .then(function (success) {
+    if (success) {
       alert('Validation succeeded!');
     }
   });</code></pre>
