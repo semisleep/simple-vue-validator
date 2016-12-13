@@ -210,7 +210,7 @@
             <td>undefined</td>
             <td>
               Extend the built-in error text template, this method is mainly used for localization.<br/>
-              See <a href=""></a> for
+              See <a href="https://github.com/semisleep/simple-vue-validator/blob/master/src/templates.js">templates.js</a> for all the text templates you can replace.
             </td>
           </tr>
           </tbody>
@@ -219,11 +219,83 @@
     </div>
     <div id="r_validation_bag" class="section-title">ValidationBag</div>
     <div class="section-content">
-      <p>TODO</p>
+      <p>
+        when you provides the <a href="#r_validators">validators object</a> to your vue / component instance,
+        the library adds a <span class="code">ValidationBag</span> instance named <b>validation</b> to your vue / component instance.
+        It contains various methods for you to display validation status / result in your template HTML.
+      </p>
+      <table>
+        <thead>
+        <tr>
+          <th>Method</th>
+          <th>Parmas</th>
+          <th>Return</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>hasError</td>
+            <td>{String field?}</td>
+            <td>Boolean</td>
+            <td>Returns if there's any error related to given field (or the whole validation instance if field is not provide).</td>
+          </tr>
+          <tr>
+            <td>firstError</td>
+            <td>{String field?}</td>
+            <td>String</td>
+            <td>Returns the first error related to given field (or the whole validation instance if field is not provide).</td>
+          </tr>
+          <tr>
+            <td>allErrors</td>
+            <td>{String field?}</td>
+            <td>Array</td>
+            <td>Returns all the errors related to given field (or the whole validation instance if field is not provide).</td>
+          </tr>
+          <tr>
+            <td>countErrors</td>
+            <td>{String field?}</td>
+            <td>Array</td>
+            <td>Returns the count of errors related to given field (or the whole validation instance if field is not provide).</td>
+          </tr>
+          <tr>
+            <td>isValidating</td>
+            <td>{String field?}</td>
+            <td>Boolean</td>
+            <td>
+              Returns if the library is validating (<a href="#async_validation">async validation</a>) given field
+              (or if there's any field in the validation instance being validating).
+            </td>
+          </tr>
+          <tr>
+            <td>isPassed</td>
+            <td>{String field}</td>
+            <td>Boolean</td>
+            <td>
+              Returns if given field has passed the validation.
+            </td>
+          </tr>
+          <tr>
+            <td>isTouched</td>
+            <td>{String field}</td>
+            <td>Boolean</td>
+            <td>
+              Returns if given field has been touched by user.
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     <div id="r_validate" class="section-title">$validate()</div>
     <div class="section-content">
-      <p>TODO</p>
+      <p>
+        when you provides the <a href="#r_validators">validators object</a> to your vue / component instance,
+        the library adds a <span class="code">$validate()</span> method to your vue / component instance.
+      </p>
+      <p>
+        Calling <span class="code">$validate()</span> method would execute all the validators,
+        and returns a promise which would resolve to true if validation successes.
+      </p>
     </div>
   </div>
 </template>
