@@ -204,6 +204,15 @@
               A utility method to format given args using given template.
             </td>
           </tr>
+          <tr>
+            <td>extendTemplates</td>
+            <td>{Object template}</td>
+            <td>undefined</td>
+            <td>
+              Extend the built-in error text template, this method is mainly used for localization.<br/>
+              See <a href=""></a> for
+            </td>
+          </tr>
           </tbody>
         </table>
       </div>
