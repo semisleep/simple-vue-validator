@@ -3,7 +3,7 @@
     <hr/>
     <div class="chapter-title">Usages & Examples</div>
     <hr/>
-    <div class="section-title">Built-in Rules</div>
+    <div id="built_in_rules" class="section-title">Built-in Rules</div>
     <div class="section-content">
       <p>Here is an example form with different built-in rules:</p>
       <DemoWithCode :components="'BuiltinRulesExample'"/>
@@ -11,20 +11,20 @@
         This example uses several built-in validation rules, such as
         <span class="code">required</span>, <span class="code">regex</span>, <span class="code">digit</span>,
         <span class="code">length</span>, <span class="code">integer</span> and <span class="code">greaterThan</span>,
-        for the full list of built-in rules, check out the <a href="#r_rules">rules API</a>.
+        for the full list of built-in rules, check out the <a href="#r_validator">Validator / rules API</a>.
       </p>
       <p>
         To reset the validation status, this example calls <span class="code">ValidationBag.reset()</span> method,
         for detail refer to <a href="#r_validation_bag">ValidationBag API</a>.
       </p>
     </div>
-    <div class="section-title">Customized Rule</div>
+    <div id="custom_rule" class="section-title">Custom Rule</div>
     <div class="section-content">
       <DemoWithCode :components="'CustomRuleExample'"/>
       <p>
         Use <span class="code">Validator.custom()</span> method for custom validation rule,
         this method accepts a callback function to perform custom validation logic,
-        the callback function is expected to return an error message (or promise, see <a href="#async_valiation">Async Validation</a>) if validation fails.<br/>
+        the callback function is expected to return an error message (or promise, see <a href="#async_validation">Async Validation</a>) if validation fails.<br/>
         Optionally, you can provide the callback function's execution context object as the second parameter.
       </p>
       <p>
@@ -33,7 +33,7 @@
         since most validation rules apply only when the value is NOT empty, this method is also exposed as public API so that it can be used by custom code.
       </p>
     </div>
-    <div class="section-title">Cross Field Validation</div>
+    <div id="cross_field_validation" class="section-title">Cross Field Validation</div>
     <div class="section-sub-title">Password validation</div>
     <div class="section-content">
       <DemoWithCode :components="'CrossFieldValidationExample1'"/>
@@ -85,7 +85,7 @@
         thus we use use it as opposed to <span class="code">'fruit'</span> when checking for error to display: <span class="code">validation.hasError('other')</span>.
       </div>
     </div>
-    <div class="section-title">Async Validation</div>
+    <div id="async_validation" class="section-title">Async Validation</div>
     <div class="section-sub-title">Basic</div>
     <div class="section-content">
       <DemoWithCode :components="'AsyncValidationExample1'"/>
@@ -141,15 +141,15 @@
         this is useful when you only want to enable caching for form submission.
       </div>
     </div>
-    <div class="section-title">Custom Component</div>
+    <div id="custom_component" class="section-title">Custom Component</div>
     <div class="section-content">
       <DemoWithCode :components="['CustomComponentExample', 'CheckboxGroup']"/>
       <p>
         The library can work with any custom component as long as the component supports <span class="code">v-model</span>.
-        The above example demonstrates using a custom <span class="code">CheckboxGroup</span> component that wraps the <a href="http://icheck.fronteed.com/">icheck</a> library.
+        The above example demonstrates using a custom <span class="code">CheckboxGroup</span> component that wraps the <a href="http://icheck.fronteed.com/">iCheck</a> library.
       </p>
     </div>
-    <div class="section-title">Dynamic Form</div>
+    <div id="dynamic_form" class="section-title">Dynamic Form</div>
     <div class="section-content">
       <DemoWithCode :components="['DynamicFormExample', 'DynamicForm']"/>
       <p>

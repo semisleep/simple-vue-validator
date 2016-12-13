@@ -32,7 +32,7 @@
         return Validator.value(value).required().regex('^[A-Za-z]*$', 'Must only contain alphabetic characters.');
       },
       value: function(value) {
-        return Validator.value(value).digit();
+        return Validator.value(value).required().digit();
       }
     },
     methods: {
@@ -44,6 +44,9 @@
               return {key: this.key, value: this.value}
             }
           });
+      },
+      reset: function() {
+        this.validation.reset();
       }
     }
   }
