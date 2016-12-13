@@ -151,7 +151,12 @@
     </div>
     <div class="section-title">Dynamic Form</div>
     <div class="section-content">
-      <p>TODO</p>
+      <DemoWithCode :components="['DynamicFormExample', 'DynamicForm']"/>
+      <p>
+        To implement dynamic form (form created at runtime), move the form related HTML and codes into a separated child component and expose a validate method,
+        this would result in multiple <a href="#r_validation_bag">ValidationBag</a> instances attached to the child components.<br/>
+        You can then invoke the validate method from parent to trigger validation logic.
+      </p>
     </div>
   </div>
 </template>

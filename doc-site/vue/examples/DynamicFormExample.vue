@@ -1,10 +1,9 @@
 <template>
   <div class="layout-form">
-    <div class="form-group" :class="{error: validation.hasError('email')}">
-      <div class="label">* Email</div>
-      <div class="content"><input type="text" class="form-control" v-model="email"/></div>
-      <div class="message">{{ validation.firstError('email') }}</div>
-    </div>
+    <template v-for="n in 3">
+      <DynamicForm ref="forms"/>
+      <hr>
+    </template>
     <div class="form-group">
       <div class="actions">
         <button type="button" class="btn btn-primary" @click="submit">Submit</button>
@@ -23,19 +22,18 @@
   module.exports = {
     data: function () {
       return {
-        email: ''
       };
-    },
-    validators: {
-      email: function (value) {
-        return Validator.value(value).required().email();
-      }
     },
     methods: {
       submit: function () {
-        this.$validate()
-          .then(function (success) {
-            if (success) {
+        Promise
+          .all(this.$refs.forms.map(function (form) {
+            return form.validate();
+          }))
+          .then(function (results) {
+            if (results.filter(function(result) {
+                return !result;
+              }).length === 0) {
               alert('Validation succeeded!');
             }
           });

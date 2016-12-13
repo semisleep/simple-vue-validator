@@ -52,8 +52,8 @@
     methods: {
       submit: function () {
         this.$validate()
-          .then(function (result) {
-            if (result) {
+          .then(function (success) {
+            if (success) {
               alert('Validation succeeded!');
             }
           });
