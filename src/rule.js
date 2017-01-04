@@ -245,7 +245,7 @@ Rule.prototype.digit = function () {
 };
 
 Rule.prototype.email = function () {
-  return this.regex(/^\w+@\w+?\.[a-zA-Z]{2,3}$/, utils.templates.emailInvalid);
+  return this.regex(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, utils.templates.emailInvalid);
 };
 
 Rule.prototype.url = function () {
