@@ -10,8 +10,8 @@ var mixin = require('./mixin');
 
 function install(Vue, options) {
   Vue.mixin(mixin);
-  if (options && options.messages) {
-    Validator.extendTemplates(options.messages);
+  if (options && options.templates) {
+    Validator.extendTemplates(options.templates);
   }
 }
 
