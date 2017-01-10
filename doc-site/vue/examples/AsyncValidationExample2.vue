@@ -11,6 +11,7 @@
     </div>
     <div class="form-group">
       <div class="actions">
+        <button type="button" class="btn btn-default" @click="reset">Reset</button>
         <button type="button" class="btn btn-primary" @click="submit">Submit</button>
       </div>
     </div>
@@ -53,10 +54,13 @@
       submit: function () {
         this.$validate()
           .then(function (success) {
-            if (result) {
+            if (success) {
               alert('Validation succeeded!');
             }
           });
+      },
+      reset: function () {
+        this.validation.reset();
       }
     }
   }

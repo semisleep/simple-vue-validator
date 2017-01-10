@@ -56,12 +56,21 @@ var mixin = {
         // watch change and invoke validate method
         var validateMethodForWatch = validateMethod;
         if (options.debounce) {
-          // eagerly resetting validating flag if debouncing is used.
           // TODO what if custom field name is used?
-          var debouncedValidateMethod = _.debounce(validateMethod, parseInt(options.debounce));
+          var decoratedValidateMethod = function() {
+            if (decoratedValidateMethod.resetCounter !== this.validation.resetCounter) {
+              // skip validation if it's reset before
+              return Promise.resolve(false);
+            }
+            return validateMethod.apply(this, arguments);
+          }.bind(this);
+          var debouncedValidateMethod = _.debounce(decoratedValidateMethod, parseInt(options.debounce));
           var field = properties[0];
           validateMethodForWatch = function () {
+            // eagerly resetting passed flag if debouncing is used.
             this.validation.resetPassed(field);
+            // store resetCounter
+            decoratedValidateMethod.resetCounter = this.validation.resetCounter;
             debouncedValidateMethod.apply(this, arguments);
           }.bind(this);
         }

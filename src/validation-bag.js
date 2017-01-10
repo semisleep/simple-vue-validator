@@ -4,6 +4,7 @@ var _ = require('lodash');
 var Promise = require('bluebird');
 
 function ValidationBag() {
+  this.resetCounter = 0;
   this.errors = [];
   this.validatingRecords = [];
   this.passedRecords = [];
@@ -159,6 +160,7 @@ function isValueSet(records, field) {
 }
 
 ValidationBag.prototype.reset = function () {
+  this.resetCounter ++;
   this.errors = [];
   this.validatingRecords = [];
   this.passedRecords = [];
