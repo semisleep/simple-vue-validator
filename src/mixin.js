@@ -88,9 +88,12 @@ var mixin = {
   },
 
   data: function () {
-    return {
-      validation: new ValidationBag()
-    };
+    if (this.$options.validators) {
+      return {
+        validation: new ValidationBag()
+      };
+    }
+    return {};
   },
 
   methods: {
