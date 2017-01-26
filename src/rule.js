@@ -1,6 +1,6 @@
 'use strict';
 
-var _ = require('lodash');
+var _ = require('lodash/core');
 var utils = require('./utils');
 
 function Rule() {
