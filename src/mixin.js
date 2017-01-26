@@ -1,6 +1,8 @@
 'use strict';
 
-var _ = require('lodash');
+var _ = require('lodash/core');
+var omit = require('lodash/omit');
+var debounce = require('lodash/debounce');
 var Promise = require('bluebird');
 var ValidationBag = require('./validation-bag');
 
@@ -64,7 +66,7 @@ var mixin = {
             }
             return validateMethod.apply(this, arguments);
           }.bind(this);
-          var debouncedValidateMethod = _.debounce(decoratedValidateMethod, parseInt(options.debounce));
+          var debouncedValidateMethod = debounce(decoratedValidateMethod, parseInt(options.debounce));
           var field = properties[0];
           validateMethodForWatch = function () {
             // eagerly resetting passed flag if debouncing is used.
