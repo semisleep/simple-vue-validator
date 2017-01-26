@@ -28,7 +28,7 @@ var mixin = {
         var validator = validators[key];
         var options = {};
         if (!_.isFunction(validator)) {
-          options = _.omit(validator, 'validator');
+          options = omit(validator, 'validator');
           validator = validator.validator;
         }
         if (options.cache) {
