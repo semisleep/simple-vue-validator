@@ -2,9 +2,11 @@
 
 var _ = require('lodash/core');
 var Promise = require('bluebird');
+var Vue = require('vue');
 
 function ValidationBag() {
-  this.resetCounter = 0;
+  this.sessionId = 0; // async validator will check this before adding error
+  this.resetting = 0; // do not allow to add error while reset is in progress
   this.errors = [];
   this.validatingRecords = [];
   this.passedRecords = [];
@@ -12,6 +14,9 @@ function ValidationBag() {
 }
 
 ValidationBag.prototype.addError = function (field, message) {
+  if (this.resetting) {
+    return;
+  }
   this.errors.push({field: field, message: message});
 };
 
@@ -55,6 +60,9 @@ ValidationBag.prototype.countErrors = function (field) {
 };
 
 ValidationBag.prototype.setValidating = function (field, id) {
+  if (this.resetting) {
+    return;
+  }
   id = id || ValidationBag.newValidatingId();
   var existingValidatingRecords = this.validatingRecords.filter(function (validating) {
     return validating.field === field && validating.id === id;
@@ -105,6 +113,9 @@ ValidationBag.prototype.isValidating = function (field, id) {
 };
 
 ValidationBag.prototype.setPassed = function (field) {
+  if (this.resetting) {
+    return;
+  }
   setValue(this.passedRecords, field);
 };
 
@@ -117,6 +128,9 @@ ValidationBag.prototype.isPassed = function (field) {
 };
 
 ValidationBag.prototype.setTouched = function (field) {
+  if (this.resetting) {
+    return;
+  }
   setValue(this.touchedRecords, field);
 };
 
@@ -160,15 +174,23 @@ function isValueSet(records, field) {
 }
 
 ValidationBag.prototype.reset = function () {
-  this.resetCounter ++;
+  this.sessionId++;
   this.errors = [];
   this.validatingRecords = [];
   this.passedRecords = [];
   this.touchedRecords = [];
+  // prevent field updates at the same tick to change validation status
+  this.resetting++;
+  Vue.nextTick(function() {
+    this.resetting--;
+  }.bind(this));
 };
 
 // returns true if any error is added
 ValidationBag.prototype.setError = function (field, message) {
+  if (this.resetting) {
+    return;
+  }
   this.removeErrors(field);
   this.resetPassed(field);
 
@@ -216,6 +238,9 @@ ValidationBag.prototype.setError = function (field, message) {
 };
 
 ValidationBag.prototype.checkRule = function (rule) {
+  if (this.resetting) {
+    return;
+  }
   return this.setError(rule._field, rule._messages);
 };
 

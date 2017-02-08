@@ -60,7 +60,7 @@ var mixin = {
         if (options.debounce) {
           // TODO what if custom field name is used?
           var decoratedValidateMethod = function() {
-            if (decoratedValidateMethod.resetCounter !== this.validation.resetCounter) {
+            if (decoratedValidateMethod.sessionId !== this.validation.sessionId) {
               // skip validation if it's reset before
               return Promise.resolve(false);
             }
@@ -71,8 +71,8 @@ var mixin = {
           validateMethodForWatch = function () {
             // eagerly resetting passed flag if debouncing is used.
             this.validation.resetPassed(field);
-            // store resetCounter
-            decoratedValidateMethod.resetCounter = this.validation.resetCounter;
+            // store sessionId
+            decoratedValidateMethod.sessionId = this.validation.sessionId;
             debouncedValidateMethod.apply(this, arguments);
           }.bind(this);
         }
