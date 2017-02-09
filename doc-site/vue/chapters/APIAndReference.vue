@@ -7,8 +7,9 @@
     <div class="section-content">
       <p>
         Installing the library is the same as other Vue plugins,
-        you can also provide the <span class="code">templates</span> option to provide localized error messages.
-      <pre><code class="language-javascript">Vue.use(SimpleVueValidator, {templates: {...});</code></pre>
+        in addition, you can provide the <span class="code">templates</span> option to provide localized error messages,
+        and the <span class="code">Promise</span> option to specify the promise library to use by <span class="code">$validate()</span> method.
+      <pre><code class="language-javascript">Vue.use(SimpleVueValidator, {templates: {...}, Promise: require('bluebird');</code></pre>
       </p>
     </div>
     <div id="r_validators" class="section-title">validators object</div>
@@ -331,6 +332,10 @@
       <p>
         Calling <span class="code">$validate()</span> method would execute all the validators,
         and returns a promise which would resolve to true if validation successes.
+      </p>
+      <p>
+        In case you only want to validate some specific fields rather than all fields defined by in the <span class="code">validators</span>,
+        you can pass either the field name or an array of field names to the <span class="code">$validate()</span> method.
       </p>
     </div>
   </div>

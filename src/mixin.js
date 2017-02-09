@@ -1,14 +1,15 @@
 'use strict';
 
-var Promise = require('es6-promise').Promise;
 var utils = require('./utils');
 var ValidationBag = require('./validation-bag');
 
 var mixin = {
 
+  Promise: null,
+
   created: function () {
     // validate methods contains all application validate codes
-    var validateMethods = [];
+    var validateMethods = {};
     this.$options.validateMethods = validateMethods;
     var unwatchCallbacks = [];
     this.$options.unwatchCallbacks = unwatchCallbacks;
@@ -46,21 +47,21 @@ var mixin = {
             }
             return this.validation.checkRule(rule);
           } else {
-            return Promise.resolve(false);
+            return getPromise().resolve(false);
           }
         }.bind(this);
 
         // add to validate method list
-        validateMethods.push(validateMethod);
+        validateMethods[properties[0]] = validateMethod;
 
         // watch change and invoke validate method
         var validateMethodForWatch = validateMethod;
         if (options.debounce) {
           // TODO what if custom field name is used?
-          var decoratedValidateMethod = function() {
+          var decoratedValidateMethod = function () {
             if (decoratedValidateMethod.sessionId !== this.validation.sessionId) {
               // skip validation if it's reset before
-              return Promise.resolve(false);
+              return getPromise().resolve(false);
             }
             return validateMethod.apply(this, arguments);
           }.bind(this);
@@ -97,12 +98,22 @@ var mixin = {
   },
 
   methods: {
-    $validate: function () {
+    $validate: function (fields) {
       var validateMethods = this.$options.validateMethods;
-      if (utils.isEmpty(validateMethods)) {
-        return Promise.resolve(true);
+      if (utils.isUndefined(fields)) {
+        validateMethods = Object.keys(validateMethods).map(function (key) {
+          return validateMethods[key];
+        });
       } else {
-        return Promise
+        fields = utils.isArray(fields) ? fields : [fields];
+        validateMethods = fields.map(function(field) {
+          return validateMethods[field];
+        });
+      }
+      if (utils.isEmpty(validateMethods)) {
+        return getPromise().resolve(true);
+      } else {
+        return getPromise()
           .all(validateMethods.map(function (validateMethod) {
             return validateMethod();
           }))
@@ -171,6 +182,13 @@ function cache(validator, option) {
       }
     }
   };
+}
+
+function getPromise() {
+  if (mixin.Promise) {
+    return mixin.Promise;
+  }
+  return require('es6-promise').Promise;
 }
 
 function findInCache(cache, args) {
