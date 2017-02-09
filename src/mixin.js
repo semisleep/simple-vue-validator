@@ -1,7 +1,5 @@
 'use strict';
 
-var omit = require('lodash/omit');
-var debounce = require('lodash/debounce');
 var Promise = require('es6-promise').Promise;
 var utils = require('./utils');
 var ValidationBag = require('./validation-bag');
@@ -28,7 +26,7 @@ var mixin = {
         var validator = validators[key];
         var options = {};
         if (!utils.isFunction(validator)) {
-          options = omit(validator, 'validator');
+          options = utils.omit(validator, 'validator');
           validator = validator.validator;
         }
         if (options.cache) {
@@ -66,7 +64,7 @@ var mixin = {
             }
             return validateMethod.apply(this, arguments);
           }.bind(this);
-          var debouncedValidateMethod = debounce(decoratedValidateMethod, parseInt(options.debounce));
+          var debouncedValidateMethod = utils.debounce(decoratedValidateMethod, parseInt(options.debounce));
           var field = properties[0];
           validateMethodForWatch = function () {
             // eagerly resetting passed flag if debouncing is used.

@@ -2,6 +2,29 @@
 
 var deepEqual = require('deep-equal');
 
+// This implementation of debounce was taken from the blog of David Walsh.
+// See here: https://davidwalsh.name/javascript-debounce-function
+module.exports.debounce = function debounce(func, wait, immediate) {
+  var timeout;
+
+  return function () {
+    var context = this; args = arguments;
+    var later = function () {
+      timeout = null;
+      if (!immediate) {
+        func.apply(context, args);
+      }
+    };
+
+    var callNow = imediate && !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    if (callNow) {
+      func.apply(context, args);
+    }
+  };
+};
+
 module.exports.format = function (template) {
   var args = Array.prototype.slice.call(arguments, 1);
   return template.replace(/{(\d+)}/g, function (match, number) {
@@ -49,6 +72,18 @@ module.exports.isString = function isString(arg) {
 
 module.exports.isUndefined = function isUndefined(arg) {
   return typeof arg === 'undefined';
+};
+
+module.exports.omit = function omit(obj, key) {
+  var result = {};
+
+  for (var name in obj) {
+    if (name !== key) {
+      result[name] = obj[name];
+    }
+  }
+
+  return result;
 };
 
 module.exports.templates = require('./templates');
