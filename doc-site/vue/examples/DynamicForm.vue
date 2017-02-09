@@ -38,12 +38,11 @@
     methods: {
       validate: function() {
         this.$validate()
-          .bind(this)
           .then(function(success) {
             if (success) {
               return {key: this.key, value: this.value}
             }
-          });
+          }.bind(this));
       },
       reset: function() {
         this.validation.reset();

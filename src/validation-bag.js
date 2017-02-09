@@ -220,9 +220,12 @@ ValidationBag.prototype.setError = function (field, message) {
     // reset previous validating status for this field
     this.resetValidating(field);
     var validatingId = this.setValidating(field);
+    var always = function() {
+      //console.log(validatingId + ' | ' + 'end');
+      this.resetValidating(field, validatingId);
+    }.bind(this);
     //console.log(validatingId + ' | ' + 'start');
     return Promise.all(messages)
-      .bind(this)
       .then(function (messages) {
         // check if the validating id is is still valid
         if (this.isValidating(field, validatingId)) {
@@ -230,11 +233,15 @@ ValidationBag.prototype.setError = function (field, message) {
           return addMessages(messages);
         }
         return false;
+      }.bind(this))
+      .then(function(result) {
+        always();
+        return result;
       })
-      .finally(function () {
-        //console.log(validatingId + ' | ' + 'end');
-        this.resetValidating(field, validatingId);
-      });
+      .catch(function (e) {
+        always();
+        return Promise.reject(e);
+      }.bind(this));
   }
 };
 

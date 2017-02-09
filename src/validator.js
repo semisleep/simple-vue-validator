@@ -22,7 +22,7 @@ Validator.isEmpty = utils.isEmpty;
 Validator.format = utils.format;
 
 Validator.extendTemplates = function(newTemplate) {
-  Object.keys(newTemplates).forEach(function (key) {
+  Object.keys(newTemplate).forEach(function (key) {
     utils.templates[key] = newTemplate[key];
   });
 };

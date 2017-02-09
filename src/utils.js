@@ -8,7 +8,8 @@ module.exports.debounce = function debounce(func, wait, immediate) {
   var timeout;
 
   return function () {
-    var context = this; args = arguments;
+    var context = this;
+    var args = arguments;
     var later = function () {
       timeout = null;
       if (!immediate) {
@@ -16,7 +17,7 @@ module.exports.debounce = function debounce(func, wait, immediate) {
       }
     };
 
-    var callNow = imediate && !timeout;
+    var callNow = immediate && !timeout;
     clearTimeout(timeout);
     timeout = setTimeout(later, wait);
     if (callNow) {
@@ -41,7 +42,7 @@ module.exports.isArray = function isArray(arg) {
 };
 
 module.exports.isEmpty = function (value) {
-  if (isArray(value)) {
+  if (module.exports.isArray(value)) {
     return !value.length;
   } else if (value === undefined || value === null) {
     return true;
