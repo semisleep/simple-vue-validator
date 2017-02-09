@@ -26,8 +26,8 @@
   },
   "homepage": "https://github.com/semisleep/simple-vue-validator#readme",
   "dependencies": {
-    "bluebird": "^3.4.6",
-    "lodash": "^4.17.2"
+    "deep-equal": "^1.0.1",
+    "es6-promise": "^4.0.5"
   },
   "devDependencies": {
     "autoprefixer": "^6.5.3",
