@@ -1,6 +1,5 @@
 'use strict';
 
-var _ = require('lodash');
 var utils = require('./utils');
 
 function Rule() {
@@ -56,7 +55,7 @@ Rule.prototype.float = function () {
   var value = this._checkValue();
   if (!utils.isEmpty(value)) {
     var number = parseFloat(value);
-    if (_.isNaN(number)) {
+    if (utils.isNaN(number)) {
       this._messages.push(utils.templates.mustBeFloat);
     }
   }
@@ -67,7 +66,7 @@ Rule.prototype.integer = function () {
   var value = this._checkValue();
   if (!utils.isEmpty(value)) {
     var number = parseInt(value);
-    if (_.isNaN(number)) {
+    if (utils.isNaN(number)) {
       this._messages.push(utils.templates.mustBeInteger);
     }
   }
@@ -78,7 +77,7 @@ Rule.prototype.lessThan = function (bound) {
   var value = this._checkValue();
   if (!utils.isEmpty(value)) {
     var number = parseFloat(value);
-    if (_.isNaN(number)) {
+    if (utils.isNaN(number)) {
       this._messages.push(utils.templates.mustBeNumber);
     } else if (number >= bound) {
       this._messages.push(utils.format(utils.templates.mustLessThan, bound));
@@ -91,7 +90,7 @@ Rule.prototype.lessThanOrEqualTo = function (bound) {
   var value = this._checkValue();
   if (!utils.isEmpty(value)) {
     var number = parseFloat(value);
-    if (_.isNaN(number)) {
+    if (utils.isNaN(number)) {
       this._messages.push(utils.templates.mustBeNumber);
     } else if (number > bound) {
       this._messages.push(utils.format(utils.templates.mustLessThanOrEqualTo, bound));
@@ -104,7 +103,7 @@ Rule.prototype.greaterThan = function (bound) {
   var value = this._checkValue();
   if (!utils.isEmpty(value)) {
     var number = parseFloat(value);
-    if (_.isNaN(number)) {
+    if (utils.isNaN(number)) {
       this._messages.push(utils.templates.mustBeNumber);
     } else if (number <= bound) {
       this._messages.push(utils.format(utils.templates.mustGreaterThan, bound));
@@ -117,7 +116,7 @@ Rule.prototype.greaterThanOrEqualTo = function (bound) {
   var value = this._checkValue();
   if (!utils.isEmpty(value)) {
     var number = parseFloat(value);
-    if (_.isNaN(number)) {
+    if (utils.isNaN(number)) {
       this._messages.push(utils.templates.mustBeNumber);
     } else if (number < bound) {
       this._messages.push(utils.format(utils.templates.mustGreaterThanOrEqualTo, bound));
@@ -130,7 +129,7 @@ Rule.prototype.between = function (lowBound, highBound) {
   var value = this._checkValue();
   if (!utils.isEmpty(value)) {
     var number = parseFloat(value);
-    if (_.isNaN(number)) {
+    if (utils.isNaN(number)) {
       this._messages.push(utils.templates.mustBeNumber);
     } else if (number < lowBound || number > highBound) {
       this._messages.push(utils.format(utils.templates.mustBetween, lowBound, highBound));
@@ -142,7 +141,7 @@ Rule.prototype.between = function (lowBound, highBound) {
 Rule.prototype.size = function (size) {
   var value = this._checkValue();
   if (!utils.isEmpty(value)) {
-    if (_.isArray(value) && value.length != size) {
+    if (utils.isArray(value) && value.length != size) {
       this._messages.push(utils.format(utils.templates.sizeMustBe, size));
     }
   }
@@ -230,7 +229,7 @@ Rule.prototype.match = function (valueToCompare, message) {
 Rule.prototype.regex = function (regex, message) {
   var value = this._checkValue();
   if (!utils.isEmpty(value)) {
-    if (_.isString(regex)) {
+    if (utils.isString(regex)) {
       regex = new RegExp(regex);
     }
     if (!regex.test(value)) {
@@ -245,7 +244,7 @@ Rule.prototype.digit = function () {
 };
 
 Rule.prototype.email = function () {
-  return this.regex(/^\w+@\w+?\.[a-zA-Z]{2,3}$/, utils.templates.emailInvalid);
+  return this.regex(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, utils.templates.emailInvalid);
 };
 
 Rule.prototype.url = function () {

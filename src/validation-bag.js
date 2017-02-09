@@ -1,9 +1,13 @@
 'use strict';
 
-var _ = require('lodash');
-var Promise = require('bluebird');
+var Promise = require('es6-promise').Promise;
+var Vue = require('vue');
+
+var utils = require('./utils');
 
 function ValidationBag() {
+  this.sessionId = 0; // async validator will check this before adding error
+  this.resetting = 0; // do not allow to add error while reset is in progress
   this.errors = [];
   this.validatingRecords = [];
   this.passedRecords = [];
@@ -11,11 +15,14 @@ function ValidationBag() {
 }
 
 ValidationBag.prototype.addError = function (field, message) {
+  if (this.resetting) {
+    return;
+  }
   this.errors.push({field: field, message: message});
 };
 
 ValidationBag.prototype.removeErrors = function (field) {
-  if (_.isUndefined(field)) {
+  if (utils.isUndefined(field)) {
     this.errors = [];
   } else {
     this.errors = this.errors.filter(function (e) {
@@ -25,12 +32,12 @@ ValidationBag.prototype.removeErrors = function (field) {
 };
 
 ValidationBag.prototype.hasError = function (field) {
-  return _.isUndefined(field) ? !!this.errors.length : !!this.firstError(field);
+  return utils.isUndefined(field) ? !!this.errors.length : !!this.firstError(field);
 };
 
 ValidationBag.prototype.firstError = function (field) {
   for (var i = 0; i < this.errors.length; i++) {
-    if (_.isUndefined(field) || this.errors[i].field === field) {
+    if (utils.isUndefined(field) || this.errors[i].field === field) {
       return this.errors[i].message;
     }
   }
@@ -40,7 +47,7 @@ ValidationBag.prototype.firstError = function (field) {
 ValidationBag.prototype.allErrors = function (field) {
   return this.errors
     .filter(function (e) {
-      return _.isUndefined(field) || e.field === field;
+      return utils.isUndefined(field) || e.field === field;
     })
     .map(function (e) {
       return e.message;
@@ -48,17 +55,20 @@ ValidationBag.prototype.allErrors = function (field) {
 };
 
 ValidationBag.prototype.countErrors = function (field) {
-  return _.isUndefined(field) ? this.errors.length : this.errors.filter(function (e) {
+  return utils.isUndefined(field) ? this.errors.length : this.errors.filter(function (e) {
     return field === e.field;
   }).length;
 };
 
 ValidationBag.prototype.setValidating = function (field, id) {
+  if (this.resetting) {
+    return;
+  }
   id = id || ValidationBag.newValidatingId();
   var existingValidatingRecords = this.validatingRecords.filter(function (validating) {
     return validating.field === field && validating.id === id;
   });
-  if (!_.isEmpty(existingValidatingRecords)) {
+  if (!utils.isEmpty(existingValidatingRecords)) {
     throw new Error('Validating id already set: ' + id);
   }
   this.validatingRecords.push({field: field, id: id});
@@ -72,7 +82,7 @@ ValidationBag.prototype.resetValidating = function (field, id) {
   }
 
   function idMatched(validating) {
-    return _.isUndefined(id) ? true : (validating.id === id);
+    return utils.isUndefined(id) ? true : (validating.id === id);
   }
 
   var hasMore = true;
@@ -94,16 +104,19 @@ ValidationBag.prototype.resetValidating = function (field, id) {
 
 ValidationBag.prototype.isValidating = function (field, id) {
   function idMatched(validating) {
-    return _.isUndefined(id) ? true : (validating.id === id);
+    return utils.isUndefined(id) ? true : (validating.id === id);
   }
 
   var existingValidatingRecords = this.validatingRecords.filter(function (validating) {
-    return (_.isUndefined(field) || validating.field === field) && idMatched(validating);
+    return (utils.isUndefined(field) || validating.field === field) && idMatched(validating);
   });
-  return !_.isEmpty(existingValidatingRecords);
+  return !utils.isEmpty(existingValidatingRecords);
 };
 
 ValidationBag.prototype.setPassed = function (field) {
+  if (this.resetting) {
+    return;
+  }
   setValue(this.passedRecords, field);
 };
 
@@ -116,6 +129,9 @@ ValidationBag.prototype.isPassed = function (field) {
 };
 
 ValidationBag.prototype.setTouched = function (field) {
+  if (this.resetting) {
+    return;
+  }
   setValue(this.touchedRecords, field);
 };
 
@@ -131,7 +147,7 @@ function setValue(records, field) {
   var existingRecords = records.filter(function (record) {
     return record.field === field;
   });
-  if (!_.isEmpty(existingRecords)) {
+  if (!utils.isEmpty(existingRecords)) {
     existingRecords[0].value = true;
   } else {
     records.push({field: field, value: true});
@@ -146,7 +162,7 @@ function resetValue(records, field) {
   var existingRecords = records.filter(function (record) {
     return record.field === field;
   });
-  if (!_.isEmpty(existingRecords)) {
+  if (!utils.isEmpty(existingRecords)) {
     existingRecords[0].value = false;
   }
 }
@@ -155,22 +171,31 @@ function isValueSet(records, field) {
   var existingRecords = records.filter(function (record) {
     return record.field === field;
   });
-  return !_.isEmpty(existingRecords) && existingRecords[0].value;
+  return !utils.isEmpty(existingRecords) && existingRecords[0].value;
 }
 
 ValidationBag.prototype.reset = function () {
+  this.sessionId++;
   this.errors = [];
   this.validatingRecords = [];
   this.passedRecords = [];
   this.touchedRecords = [];
+  // prevent field updates at the same tick to change validation status
+  this.resetting++;
+  Vue.nextTick(function() {
+    this.resetting--;
+  }.bind(this));
 };
 
 // returns true if any error is added
 ValidationBag.prototype.setError = function (field, message) {
+  if (this.resetting) {
+    return;
+  }
   this.removeErrors(field);
   this.resetPassed(field);
 
-  var messages = _.isArray(message) ? message : [message];
+  var messages = utils.isArray(message) ? message : [message];
   var addMessages = function (messages) {
     var hasError = false;
     messages.forEach(function (message) {
@@ -214,6 +239,9 @@ ValidationBag.prototype.setError = function (field, message) {
 };
 
 ValidationBag.prototype.checkRule = function (rule) {
+  if (this.resetting) {
+    return;
+  }
   return this.setError(rule._field, rule._messages);
 };
 

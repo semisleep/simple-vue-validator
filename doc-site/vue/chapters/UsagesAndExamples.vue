@@ -13,10 +13,10 @@
         <span class="code">length</span>, <span class="code">integer</span> and <span class="code">greaterThan</span>,
         for the full list of built-in rules, check out the <a href="#r_validator">Validator / rules API</a>.
       </p>
-      <p>
+      <div class="note">
         To reset the validation status, this example calls <span class="code">ValidationBag.reset()</span> method,
         for detail refer to <a href="#r_validation_bag">ValidationBag API</a>.
-      </p>
+      </div>
     </div>
     <div id="custom_rule" class="section-title">Custom Rule</div>
     <div class="section-content">
@@ -42,7 +42,7 @@
         The <span class="code">repeat</span> field however, is much trickier.
         First of all, its value should match the <span class="code">password</span> field, this means <b>cross field validation</b>.
         Secondary, when the form is not already submitted, it should not be validated if user haven't touched it,
-        otherwise we will see validation error message for <span class="code">repeat</span> field when user is typing in <span class="code">password</span> field for the first time!<br/>
+        otherwise we will see validation error message for <span class="code">repeat</span> field when user is just typing in <span class="code">password</span> field but haven't touch the <span class="code">repeat</span> field yet!<br/>
         Let's take a look at the code:
       </p>
       <pre><code class="language-javascript">submit: function () {
@@ -63,10 +63,10 @@
         In the code, we only perform validation when the form is already submitted or the <span class="code">repeat</span> field is already touched by user.
         We also enforce that the value of <span class="code">repeat</span> field should match the value of <span class="code">password</span> field.
       </p>
-      <p>
+      <div class="note">
         We use <span class="code">ValidationBag.isTouch()</span> method to detect if a field is touched by user,
         check out <a href="#r_validation_bag">ValidationBag API</a> to find more details about this method and other similar utility methods.
-      </p>
+      </div>
     </div>
     <div class="section-sub-title">Conditional validation</div>
     <div class="section-content">
