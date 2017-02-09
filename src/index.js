@@ -1,5 +1,7 @@
 'use strict';
 
+require('es6-promise/auto');
+
 var ValidationBag = require('./validation-bag');
 var Rule = require('./rule');
 var Validator = require('./validator');

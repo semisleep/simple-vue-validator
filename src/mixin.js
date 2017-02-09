@@ -1,9 +1,7 @@
 'use strict';
 
-var _ = require('lodash/core');
-var omit = require('lodash/omit');
-var debounce = require('lodash/debounce');
-var Promise = require('bluebird');
+var Promise = require('es6-promise').Promise;
+var utils = require('./utils');
 var ValidationBag = require('./validation-bag');
 
 var mixin = {
@@ -17,7 +15,7 @@ var mixin = {
     // generate validate methods and watch properties change for validators
     var validators = this.$options.validators;
     if (validators) {
-      _.keys(validators).forEach(function (key) {
+      Object.keys(validators).forEach(function (key) {
         var properties = key.split(',');
         properties = properties.map(function (property) {
           return property.trim();
@@ -27,8 +25,8 @@ var mixin = {
         }, this);
         var validator = validators[key];
         var options = {};
-        if (!_.isFunction(validator)) {
-          options = omit(validator, 'validator');
+        if (!utils.isFunction(validator)) {
+          options = utils.omit(validator, 'validator');
           validator = validator.validator;
         }
         if (options.cache) {
@@ -66,7 +64,7 @@ var mixin = {
             }
             return validateMethod.apply(this, arguments);
           }.bind(this);
-          var debouncedValidateMethod = debounce(decoratedValidateMethod, parseInt(options.debounce));
+          var debouncedValidateMethod = utils.debounce(decoratedValidateMethod, parseInt(options.debounce));
           var field = properties[0];
           validateMethodForWatch = function () {
             // eagerly resetting passed flag if debouncing is used.
@@ -101,7 +99,7 @@ var mixin = {
   methods: {
     $validate: function () {
       var validateMethods = this.$options.validateMethods;
-      if (_.isEmpty(validateMethods)) {
+      if (utils.isEmpty(validateMethods)) {
         return Promise.resolve(true);
       } else {
         return Promise
@@ -124,7 +122,7 @@ function generateGetter(vm, property) {
   return function () {
     var value = vm;
     for (var i = 0; i < names.length; i++) {
-      if (_.isNull(value) || _.isUndefined(value)) {
+      if (utils.isNull(value) || utils.isUndefined(value)) {
         break;
       }
       value = value[names[i]];
@@ -151,14 +149,14 @@ function cache(validator, option) {
     }
     var args = Array.prototype.slice.call(arguments);
     var cachedResult = findInCache(cache, args);
-    if (!_.isUndefined(cachedResult)) {
+    if (!utils.isUndefined(cachedResult)) {
       return cachedResult;
     }
     var result = validator.apply(this, args);
-    if (!_.isUndefined(result)) {
+    if (!utils.isUndefined(result)) {
       if (result.then) {
         return result.tab(function (promiseResult) {
-          if (!_.isUndefined(promiseResult)) {
+          if (!utils.isUndefined(promiseResult)) {
             if (option !== 'all') {
               cache.splice(0, cache.length);
             }
@@ -178,9 +176,9 @@ function cache(validator, option) {
 
 function findInCache(cache, args) {
   var items = cache.filter(function (item) {
-    return _.isEqual(args, item.args);
+    return utils.isEqual(args, item.args);
   });
-  if (!_.isEmpty(items)) {
+  if (!utils.isEmpty(items)) {
     return items[0].result;
   }
 }
