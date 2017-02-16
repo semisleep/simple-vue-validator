@@ -161,8 +161,8 @@
     <div id="custom_error_message" class="section-title">Custom Error Message / Localization</div>
     <div class="section-content">
       <div class="note">
-        Starting from 0.12.0, the error message templates is updated to use the same message key as rule name,
-        if you were using version lower than 0.12.0 and have defined your customized templates,
+        Starting from 0.13.0, the error message templates is updated to use the same message key as rule name,
+        if you were using version lower than 0.13.0 and have defined your customized templates,
         you will have to update your templates according to the changes <a target="_blank" href="https://github.com/semisleep/simple-vue-validator/commit/500402134346b8a014cc961b55dc1bd2189f59fb#diff-8f4411d1af5a3b8a78502627925694d8">here</a>.
       </div>
     </div>
