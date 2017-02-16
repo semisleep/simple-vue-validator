@@ -11,6 +11,10 @@
         and the <span class="code">Promise</span> option to specify the promise library to use by <span class="code">$validate()</span> method.
       <pre><code class="language-javascript">Vue.use(SimpleVueValidator, {templates: {...}, Promise: require('bluebird');</code></pre>
       </p>
+      <p>
+        You can also use <span class="code">SimpleVueValidator.mixin</span> if you don't won't to register SimpleVueValidator globally,
+        refer to the <a href="#configuration">Configuration</a> section.
+      </p>
     </div>
     <div id="r_validators" class="section-title">validators object</div>
     <div class="section-content">
@@ -61,6 +65,55 @@
         it's useful for saving ajax call so that it won't impact server performance.
       </p>
     </div>
+    <div id="r_plugin" class="section-title">Plugin</div>
+    <div class="section-content">
+      <p>
+        The <span class="code">SimpleVueValidator</span> plugin expose the following fields and methods:
+      </p>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+          <tr>
+            <th>Field /Method</th>
+            <th>Params</th>
+            <th>Return</th>
+            <th>Description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Validator</td>
+            <td>none</td>
+            <td>the Validator class</td>
+            <td>See <a href="#r_validator">Validator / rules</a></td>
+          </tr>
+          <tr>
+            <td>mixin</td>
+            <td>none</td>
+            <td>the mixin</td>
+            <td>See <a href="#configuration">Configuration</a></td>
+          </tr>
+          <tr>
+            <td>install</td>
+            <td>{Object options}</td>
+            <td>undefined</td>
+            <td>
+              This method is expected to be called by Vue.js when the plugin is registered by <span class="code">Vue.use(SimpleVueValidator)</span>
+            </td>
+          </tr>
+          <tr>
+            <td>extendTemplates</td>
+            <td>{Object template}</td>
+            <td>undefined</td>
+            <td>
+              Extend the built-in error text template, this method is mainly used for localization.<br/>
+              See <a href="https://github.com/semisleep/simple-vue-validator/blob/master/src/templates.js">templates.js</a> for all the text templates you can replace.
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
     <div id="r_validator" class="section-title">Validator / rules</div>
     <div class="section-content">
       <p>
@@ -72,7 +125,7 @@
           <thead>
           <tr>
             <th>Method</th>
-            <th>Parmas</th>
+            <th>Params</th>
             <th>Return</th>
             <th>Description</th>
           </tr>
@@ -80,134 +133,137 @@
           <tbody>
           <tr>
             <td>create</td>
-            <td>none</td>
-            <td>the validator</td>
-            <td>Creates an empty validator.</td>
+            <td>{Object options}</td>
+            <td>the customized <span class="code">Validator</span></td>
+            <td>
+              Creates a customized <span class="code">Validator</span> via given options.<br/>
+              Set <span class="code">options.templates</span> for <a href="#component_based_error_message">component based error message</a>.
+            </td>
           </tr>
           <tr>
             <td>value</td>
             <td>{String value}</td>
-            <td>the validator</td>
+            <td>the rule</td>
             <td>Sets the value which will be used by all built-in rules.</td>
           </tr>
           <tr>
             <td>required</td>
             <td>none</td>
-            <td>the validator</td>
+            <td>the rule</td>
             <td>Checks that field value is not null / empty.</td>
           </tr>
           <tr>
             <td>float</td>
             <td>none</td>
-            <td>the validator</td>
+            <td>the rule</td>
             <td>Checks that field value is a float number.</td>
           </tr>
           <tr>
             <td>integer</td>
             <td>none</td>
-            <td>the validator</td>
+            <td>the rule</td>
             <td>Checks that the field value is an integer.</td>
           </tr>
           <tr>
             <td>lessThan</td>
             <td>{Number num}</td>
-            <td>the validator</td>
+            <td>the rule</td>
             <td>Checks that the field value is less than given num.</td>
           </tr>
           <tr>
             <td>lessThanOrEqualTo</td>
             <td>{Number num}</td>
-            <td>the validator</td>
+            <td>the rule</td>
             <td>Checks that the field value is less than or equal to given num.</td>
           </tr>
           <tr>
             <td>greaterThan</td>
             <td>{Number num}</td>
-            <td>the validator</td>
+            <td>the rule</td>
             <td>Checks that the field value is greater than given num.</td>
           </tr>
           <tr>
             <td>greaterThanOrEqualTo</td>
             <td>{Number num}</td>
-            <td>the validator</td>
+            <td>the rule</td>
             <td>Checks that the field value is greater than or equal to given num.</td>
           </tr>
           <tr>
             <td>between</td>
             <td>{Number low}<br/>{Number high}</td>
-            <td>the validator</td>
+            <td>the rule</td>
             <td>Checks that the field value is between given bounds (inclusive).</td>
           </tr>
           <tr>
             <td>size</td>
             <td>{Number num}</td>
-            <td>the validator</td>
+            <td>the rule</td>
             <td>Checks that if the field value is an array like object, its size is the same as given num.</td>
           </tr>
           <tr>
             <td>length</td>
             <td>{Number num}</td>
-            <td>the validator</td>
+            <td>the rule</td>
             <td>Checks that the field value's string length equals to given num.</td>
           </tr>
           <tr>
             <td>minLength</td>
             <td>{Number num}</td>
-            <td>the validator</td>
+            <td>the rule</td>
             <td>Checks that the field value's string length is greater or equals to given num.</td>
           </tr>
           <tr>
             <td>maxLength</td>
             <td>{Number num}</td>
-            <td>the validator</td>
+            <td>the rule</td>
             <td>Checks that the field value's string length is less or equals to given num.</td>
           </tr>
           <tr>
             <td>lengthBetween</td>
             <td>{Number low}<br/>{Number high}</td>
-            <td>the validator</td>
+            <td>the rule</td>
             <td>Checks that the field value's string length between given bounds (inclusive).</td>
           </tr>
           <tr>
             <td>in</td>
             <td>{Array options}</td>
-            <td>the validator</td>
+            <td>the rule</td>
             <td>Checks that the field value is in given options.</td>
           </tr>
           <tr>
             <td>notIn</td>
             <td>{Array options}</td>
-            <td>the validator</td>
+            <td>the rule</td>
             <td>Checks that the field value is not in given options.</td>
           </tr>
           <tr>
             <td>regex</td>
             <td>{RegExp|String pattern}<br/>{String message?}</td>
-            <td>the validator</td>
+            <td>the rule</td>
             <td>Checks that the field value matches given pattern, optionally use given message as error message if provided.</td>
           </tr>
           <tr>
             <td>digit</td>
             <td>none</td>
-            <td>the validator</td>
+            <td>the rule</td>
             <td>Checks that the field value contains only digit characters.</td>
           </tr>
           <tr>
             <td>email</td>
             <td>none</td>
-            <td>the validator</td>
+            <td>the rule</td>
             <td>Checks that the field value is a valid e-mail.</td>
           </tr>
           <tr>
             <td>url</td>
             <td>none</td>
-            <td>the validator</td>
+            <td>the rule</td>
             <td>Checks that the field value is a valid url.</td>
           </tr>
           <tr>
             <td>custom</td>
             <td>{Function callback}<br/>{Object context?}</td>
-            <td>the validator</td>
+            <td>the rule</td>
             <td>
               Execute custom validation logic in provide callback function, optional use given context for callback function invocation.<br/>
               The callback function is expected to return the error message if validation fails.<br/>
@@ -231,15 +287,6 @@
               A utility method to format given args using given template.
             </td>
           </tr>
-          <tr>
-            <td>extendTemplates</td>
-            <td>{Object template}</td>
-            <td>undefined</td>
-            <td>
-              Extend the built-in error text template, this method is mainly used for localization.<br/>
-              See <a href="https://github.com/semisleep/simple-vue-validator/blob/master/src/templates.js">templates.js</a> for all the text templates you can replace.
-            </td>
-          </tr>
           </tbody>
         </table>
       </div>
@@ -256,7 +303,7 @@
           <thead>
           <tr>
             <th>Method</th>
-            <th>Parmas</th>
+            <th>Params</th>
             <th>Return</th>
             <th>Description</th>
           </tr>

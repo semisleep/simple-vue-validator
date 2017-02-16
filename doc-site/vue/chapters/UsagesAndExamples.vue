@@ -158,12 +158,32 @@
         You can then invoke the validate method from parent to trigger validation logic.
       </p>
     </div>
-    <div id="localization" class="section-title">Localization</div>
+    <div id="custom_error_message" class="section-title">Custom Error Message / Localization</div>
+    <div id="global_error_message" class="section-sub-title">Overriding Global Error Message</div>
     <div class="section-content">
       <DemoWithCode :components="'LocalizationExample'"/>
       <p>
-        Use <span class="code">Validator.extendTemplates()</span> method (or <span class="code">Vue.use(SimpleVueValidator, {templates: {...})</span>) to provide your own error templates to the library.
+        Use <span class="code">SimpleVueValidator.extendTemplates()</span> method (or <span class="code">Vue.use(SimpleVueValidator, {templates: {...})</span>) to override the default error messages.
+        This can also be used to provide localized messages to the library.
+      </p>
+      <div class="note">
         See <a href="https://github.com/semisleep/simple-vue-validator/blob/master/src/templates.js">templates.js</a> for all the text templates you can replace.
+      </div>
+    </div>
+    <div id="component_based_error_message" class="section-sub-title">Component Based Error Message</div>
+    <div class="section-content">
+      <DemoWithCode :components="'ComponentBasedMessageExample'"/>
+      <p>
+        Use <span class="code">Validator.create({templates: ...})</span> to create a new <span class="code">Validator</span> with customized error messages.
+        Overriding the error messages template this way will have the scope limit to the newly created <span class="code">Validator</span>, so it won't affect
+        the global settings.
+      </p>
+    </div>
+    <div id="field_based_error_message" class="section-sub-title">Field Based Error Message</div>
+    <div class="section-content">
+      <DemoWithCode :components="'FieldBasedMessageExample'"/>
+      <p>
+        For all the built-in rules, you can pass a custom message as the last argument to specify the error message for the current field only.
       </p>
     </div>
   </div>

@@ -30,6 +30,8 @@ Vue.component('CustomComponentExample', require('./vue/examples/CustomComponentE
 Vue.component('DynamicForm', require('./vue/examples/DynamicForm.vue'));
 Vue.component('DynamicFormExample', require('./vue/examples/DynamicFormExample.vue'));
 Vue.component('LocalizationExample', require('./vue/examples/LocalizationExample.vue'));
+Vue.component('ComponentBasedMessageExample', require('./vue/examples/ComponentBasedMessageExample.vue'));
+Vue.component('FieldBasedMessageExample', require('./vue/examples/FieldBasedMessageExample.vue'));
 
 new Vue({
   el: '#app',

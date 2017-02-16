@@ -127,7 +127,7 @@ hr {
   top: 0;
   left: 0;
   width: 260px;
-  padding: 20px 40px;
+  padding: 20px 20px 20px 40px;
   height: 100vh;
   overflow-y: auto;
   border-right: solid #e8e8e8 1px;

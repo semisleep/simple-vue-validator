@@ -13,9 +13,8 @@
   var SimpleVueValidation = require('../../../src/');
   var Validator = SimpleVueValidation.Validator;
 
-  Vue.use(SimpleVueValidation);
-  Validator.extendTemplates({
-    valueMustIn: '必须是 {0} 中的任意一个.',
+  SimpleVueValidation.extendTemplates({
+    in: '必须是 {0} 中的任意一个.',
     optionCombiner: function (options) {
       if (options.length > 2) {
         options = [options.slice(0, options.length - 1).join('，'), options[options.length - 1]];
@@ -23,6 +22,8 @@
       return options.join(' 或 ');
     }
   });
+
+  Vue.use(SimpleVueValidation);
 
   module.exports = {
     data: function () {
