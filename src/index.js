@@ -12,7 +12,7 @@ var utils = require('./utils');
 function install(Vue, options) {
   Vue.mixin(mixin);
   if (options && options.templates) {
-    Validator.extendTemplates(options.templates);
+    extendTemplates(options.templates);
   }
   if (options && options.Promise) {
     mixin.Promise = options.Promise;
