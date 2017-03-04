@@ -80,6 +80,11 @@ var mixin = {
         });
       }, this);
     }
+
+    if (this.validation) {
+      // set vm to validation
+      this.validation._setVM(this);
+    }
   },
 
   beforeDestroy: function () {

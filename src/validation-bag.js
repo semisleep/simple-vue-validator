@@ -1,7 +1,6 @@
 'use strict';
 
 var Promise = require('es6-promise').Promise;
-var Vue = require('vue');
 
 var utils = require('./utils');
 
@@ -13,6 +12,10 @@ function ValidationBag() {
   this.passedRecords = [];
   this.touchedRecords = [];
 }
+
+ValidationBag.prototype._setVM = function(vm) {
+  this._vm = vm;
+};
 
 ValidationBag.prototype.addError = function (field, message) {
   if (this.resetting) {
@@ -180,11 +183,13 @@ ValidationBag.prototype.reset = function () {
   this.validatingRecords = [];
   this.passedRecords = [];
   this.touchedRecords = [];
-  // prevent field updates at the same tick to change validation status
-  this.resetting++;
-  Vue.nextTick(function() {
-    this.resetting--;
-  }.bind(this));
+  if (this._vm) {
+    // prevent field updates at the same tick to change validation status
+    this.resetting++;
+    this._vm.$nextTick(function() {
+      this.resetting--;
+    }.bind(this));
+  }
 };
 
 // returns true if any error is added
