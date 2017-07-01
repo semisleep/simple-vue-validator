@@ -81,6 +81,8 @@ Rule.prototype.integer = function (message) {
     var number = parseInt(value);
     if (utils.isNaN(number)) {
       this._messages.push(message || this.templates.integer);
+    } else if (number !== Number(value)) { // 2 !=== 2.9
+      this._messages.push(message || this.templates.integer);
     }
   }
   return this;
