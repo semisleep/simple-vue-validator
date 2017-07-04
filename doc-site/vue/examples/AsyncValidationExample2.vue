@@ -35,7 +35,7 @@
     validators: {
       domain: {
         cache: true,
-        debounce: 500,
+        debounce: 200,
         validator: function (value) {
           return Validator.value(value).required().custom(function () {
             if (!Validator.isEmpty(value)) {

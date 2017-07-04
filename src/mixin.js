@@ -105,6 +105,9 @@ var mixin = {
       }
     },
     $validate: function (fields) {
+      if (this.validation._validate) {
+        return this.validation._validate;
+      }
       var validateMethods = this.$options.validateMethods;
       if (utils.isUndefined(fields)) {
         validateMethods = Object.keys(validateMethods).map(function (key) {
@@ -119,15 +122,24 @@ var mixin = {
       if (utils.isEmpty(validateMethods)) {
         return getPromise().resolve(true);
       } else {
-        return getPromise()
+        var always = function() {
+          this.validation._validate = null;
+        }.bind(this);
+        this.validation._validate = getPromise()
           .all(validateMethods.map(function (validateMethod) {
             return validateMethod();
           }))
           .then(function (results) {
+            always();
             return results.filter(function (result) {
                 return !!result;
               }).length <= 0;
-          }.bind(this));
+          }.bind(this))
+          .catch(function(e) {
+            always();
+            throw e;
+          });
+        return this.validation._validate;
       }
     }
   }
