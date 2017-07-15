@@ -37,7 +37,7 @@
     },
     methods: {
       validate: function() {
-        this.$validate()
+        return this.$validate()
           .then(function(success) {
             if (success) {
               return {key: this.key, value: this.value}
