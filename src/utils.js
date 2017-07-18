@@ -89,3 +89,5 @@ module.exports.omit = function omit(obj, key) {
 
 module.exports.templates = require('./templates');
 
+module.exports.mode = 'interactive'; // other values: conservative and manual
+

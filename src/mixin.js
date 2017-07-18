@@ -58,7 +58,11 @@ var mixin = {
             var option = options.cache === 'last' ? 'last' : 'all';
             validator = cache(validator, option);
           }
+          var validation = this.validation;
           var validateMethod = function () {
+            if (utils.mode === 'conservative' && !validation.activated) { // do nothing if in conservative mode and $validate() method is not called before
+              return getPromise().resolve(false);
+            }
             var args = getters.map(function (getter) {
               return getter();
             });
@@ -98,9 +102,11 @@ var mixin = {
               debouncedValidateMethod.apply(this, arguments);
             }.bind(this);
           }
-          watchProperties(this, properties, validateMethodForWatch).forEach(function (unwatch) {
-            unwatchCallbacks.push(unwatch);
-          });
+          if (utils.mode !== 'manual') { // have to call $validate() to trigger validation in manual mode, so don't watch,
+            watchProperties(this, properties, validateMethodForWatch).forEach(function (unwatch) {
+              unwatchCallbacks.push(unwatch);
+            });
+          }
         }, this);
       }
     },
@@ -108,6 +114,7 @@ var mixin = {
       if (this.validation._validate) {
         return this.validation._validate;
       }
+      this.validation.activated = true;
       var validateMethods = this.$options.validateMethods;
       if (utils.isUndefined(fields)) {
         validateMethods = Object.keys(validateMethods).map(function (key) {

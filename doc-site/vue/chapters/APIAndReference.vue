@@ -8,8 +8,9 @@
       <p>
         Installing the library is the same as other Vue plugins,
         in addition, you can provide the <span class="code">templates</span> option to provide localized error messages,
+        the interaction mode,
         and the <span class="code">Promise</span> option to specify the promise library to use by <span class="code">$validate()</span> method.
-      <pre><code class="language-javascript">Vue.use(SimpleVueValidator, {templates: {...}, Promise: require('bluebird');</code></pre>
+      <pre><code class="language-javascript">Vue.use(SimpleVueValidator, {templates: {...}, mode: 'interactive', Promise: require('bluebird')};</code></pre>
       </p>
       <p>
         You can also use <span class="code">SimpleVueValidator.mixin</span> if you don't won't to register SimpleVueValidator globally,
@@ -108,6 +109,15 @@
             <td>
               Extend the built-in error text template, this method is mainly used for localization.<br/>
               See <a href="https://github.com/semisleep/simple-vue-validator/blob/master/src/templates.js">templates.js</a> for all the text templates you can replace.
+            </td>
+          </tr>
+          <tr>
+            <td>setMode</td>
+            <td>{String mode}</td>
+            <td>undefined</td>
+            <td>
+              Available modes are: 'interactive', 'manual' and 'conservative'.<br/>
+              Refer to <a href="#m_modes">Interaction Mode</a> for detail.
             </td>
           </tr>
           </tbody>

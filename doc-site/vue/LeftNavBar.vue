@@ -20,6 +20,8 @@
       <li class="item"><a href="#custom_component">Custom Component</a></li>
       <li class="item"><a href="#dynamic_form">Dynamic Form</a></li>
       <li class="item"><a href="#custom_error_message">Custom Error Message / Localization</a></li>
+      <li class="heading">MISC</li>
+      <li class="item"><a href="#m_modes">Interaction Mode</a></li>
       <li class="heading">API</li>
       <li class="item"><a href="#r_install">install()</a></li>
       <li class="item"><a href="#r_validators">validators object</a></li>

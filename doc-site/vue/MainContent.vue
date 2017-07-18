@@ -8,6 +8,7 @@
 
     <GettingStarted />
     <UsagesAndExamples />
+    <Miscellaneous />
     <APIAndReference />
 
   </div>

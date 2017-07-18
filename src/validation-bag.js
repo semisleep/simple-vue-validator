@@ -11,6 +11,7 @@ function ValidationBag() {
   this.validatingRecords = [];
   this.passedRecords = [];
   this.touchedRecords = [];
+  this.activated = false; // set when $validate() is call, this flag works with the conservative mode
 }
 
 ValidationBag.prototype._setVM = function(vm) {
@@ -190,6 +191,7 @@ ValidationBag.prototype.reset = function () {
       this.resetting--;
     }.bind(this));
   }
+  this.activated = false;
 };
 
 // returns true if any error is added
