@@ -10,16 +10,16 @@
       </p>
       <ul>
         <li>
-          The default mode is <span class="code">interactive</span>, in this mode, the library will actively update validation result when user make changes
+          The default mode is <span class="code">interactive</span>, in this mode, the library will actively update validation result when user makes changes
           to the form. Normally the validation happens immediately when user is typing, but this can be delayed if <span class="code">v-model.lazy</span> is used.
         </li>
         <li>
-          The second mode is <span class="code">manually</span>, in this mode, the validation is triggered only when <span class="code">$validate()</span>
+          The second mode is <span class="code">manual</span>, in this mode, the validation is triggered only when <span class="code">$validate()</span>
           method is explicitly called.
         </li>
         <li>
           The last mode is <span class="code">conservative</span>, in this mode, the validation is passive at first, just the same as
-          <span class="code">manually</span> mode. But once the <span class="code">$validate()</span> method is called, it become active and acts exactly like
+          <span class="code">manual</span> mode. But once the <span class="code">$validate()</span> method is called, it becomes active and acts exactly like
           <span class="code">interactive</span> mode.
         </li>
       </ul>
