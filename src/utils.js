@@ -4,7 +4,7 @@ var deepEqual = require('deep-equal');
 
 // This implementation of debounce was taken from the blog of David Walsh.
 // See here: https://davidwalsh.name/javascript-debounce-function
-module.exports.debounce = function debounce(func, wait, immediate) {
+module.exports.debounce = function (func, wait, immediate) {
   var timeout;
 
   return function () {
@@ -33,7 +33,7 @@ module.exports.format = function (template) {
   });
 };
 
-module.exports.isArray = function isArray(arg) {
+module.exports.isArray = function (arg) {
   if (typeof Array.isArray === 'function') {
     return Array.isArray(arg);
   }
@@ -51,27 +51,27 @@ module.exports.isEmpty = function (value) {
   }
 };
 
-module.exports.isEqual = function isEqual(o1, o2) {
+module.exports.isEqual = function (o1, o2) {
   return deepEqual(o1, o2);
 };
 
-module.exports.isFunction = function isFunction(arg) {
+module.exports.isFunction = function (arg) {
   return typeof arg === 'function';
 };
 
-module.exports.isNaN = function isNaN(arg) {
-  return arg !== arg;
+module.exports.isNaN = function (arg) {
+  return /^\s*$/.test(arg) || isNaN(arg);
 };
 
-module.exports.isNull = function isNull(arg) {
+module.exports.isNull = function (arg) {
   return arg === null;
 };
 
-module.exports.isString = function isString(arg) {
+module.exports.isString = function (arg) {
   return typeof arg === 'string' || arg instanceof String;
 };
 
-module.exports.isUndefined = function isUndefined(arg) {
+module.exports.isUndefined = function (arg) {
   return typeof arg === 'undefined';
 };
 
