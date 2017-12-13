@@ -7,7 +7,7 @@ var mixin = {
 
   Promise: null,
 
-  created: function () {
+  beforeMount: function () {
     this.$setValidators(this.$options.validators);
 
     if (this.validation) {
