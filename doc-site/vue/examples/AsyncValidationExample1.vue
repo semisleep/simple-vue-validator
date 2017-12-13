@@ -34,7 +34,7 @@
     },
     validators: {
       domain: function (value) {
-        return Validator.value(value).required().custom(function () {
+        return Validator.value(value).required().maxLength(20).custom(function () {
           if (!Validator.isEmpty(value)) {
             return Promise.delay(1000)
               .then(function () {
