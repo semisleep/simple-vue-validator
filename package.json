@@ -8,7 +8,7 @@
     "lib-umd-build": "cross-env NODE_ENV=production webpack --progress --config webpack-lib-umd.config.js",
     "lib-web-test": "cross-env NODE_ENV=development webpack-dev-server --open --inline --hot --config webpack-lib.config.js",    
     "doc-site-build": "cross-env NODE_ENV=production webpack --progress --hide-modules --config webpack-doc-site.config.js",
-    "doc-site-dev": "cross-env NODE_ENV=development webpack-dev-server --open --inline --hot --config webpack-doc-site.config.js --host 0.0.0.0"
+    "doc-site-dev": "cross-env NODE_ENV=development webpack-dev-server --open --inline --hot --config webpack-doc-site.config.js"
   },
   "repository": {
     "type": "git",

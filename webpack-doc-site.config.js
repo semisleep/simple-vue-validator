@@ -57,7 +57,7 @@ module.exports = {
     hot: true,
     inline: true,
     // https: true,
-    port: 8080,
+    port: 8081,
     contentBase: path.resolve(__dirname, 'doc-site')
   },
   devtool: '#source-map'
