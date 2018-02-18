@@ -39,7 +39,7 @@ module.exports = {
     inline: true,
     // https: true,
     port: 8080,
-    contentBase: path.resolve(__dirname, 'test/web')
+    contentBase: [path.resolve(__dirname, 'test/web'), path.resolve(__dirname, 'dist')]
   },
   devtool: '#source-map'
 };

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <title>Test UMD - Simple Vue Validator</title>
+</head>
+
+<body>
+
+   <div id="app">
+      <div>
+         <label for="email">Email</label>
+         <input id="email" type="text" v-model="email">
+         <button @click="test">Test</button>
+      </div>
+      <div>
+         {{ email }}
+      </div>
+      <div>
+         {{ validation.allErrors('email') }}
+      </div>
+   </div>
+
+   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+   <script src="/umd-plugin.js"></script>
+   <script>
+      SimpleVueValidator.setMode('manual');
+      var Validator = SimpleVueValidator.Validator;
+      var app = new Vue({
+         el: '#app',
+         data: {
+            email: ''
+         },
+         methods: {
+            test: function () {
+               this.$validate().then(function (success) {
+                  if (success) {
+                     alert("Success");
+                  } else {
+                     alert("Error");
+                  }
+               })
+            }
+         },
+         validators: {
+            email: function (value) {
+               return Validator.value(value).required().email();
+            }
+         }
+      })
+   </script>
+</body>
+
+</html>

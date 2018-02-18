@@ -35,6 +35,10 @@ function setMode(mode) {
   utils.mode = mode;
 }
 
+if (typeof window !== 'undefined' && window.Vue) {
+  window.Vue.use(install);
+}
+
 /* exports
  ----------------------------------- */
 
