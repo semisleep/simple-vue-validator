@@ -11,7 +11,7 @@ It supports the following features:
 
 # Documentation
 
-Please checkout the [full documentation](http://simple-vue-validator.maijin.info) for more detail.
+Please checkout the [full documentation](http://simple-vue-validator.magictek.cn) for more detail.
 
 ## Installation
 Package is installable via npm.
@@ -44,6 +44,6 @@ In the template HTML use the `validation` object injected by the library to disp
 ```html
 <div class="message">{{ validation.firstError('email') }}</div>
 ```
-Please checkout the [full documentation](http://simple-vue-validator.maijin.info) for more detail.
+Please checkout the [full documentation](http://simple-vue-validator.magictek.cn) for more detail.
 
 ## license MIT
