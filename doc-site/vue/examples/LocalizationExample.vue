@@ -9,9 +9,9 @@
 </template>
 
 <script type="text/javascript">
-  var Vue = require('vue');
-  var SimpleVueValidation = require('../../../src/');
-  var Validator = SimpleVueValidation.Validator;
+  import Vue from 'vue';
+  import SimpleVueValidation from '../../../src/';
+  const Validator = SimpleVueValidation.Validator;
 
   SimpleVueValidation.extendTemplates({
     in: '必须是 {0} 中的任意一个.',

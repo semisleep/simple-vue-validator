@@ -28,11 +28,11 @@
 </template>
 
 <script type="text/javascript">
-  var _ = require('lodash');
-  var Promise = require('bluebird');
-  var $ = require('jquery');
-  require('waypoints/lib/jquery.waypoints');
-  var prism = require('prismjs');
+  import _ from 'lodash';
+  import Promise from 'bluebird';
+  import $ from 'jquery';
+  import 'waypoints/lib/jquery.waypoints';
+  import prism from 'prismjs';
 
   function getVueFile(component) {
     var url = 'vue/examples/' + component + '.vue';

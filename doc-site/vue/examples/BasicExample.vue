@@ -14,9 +14,9 @@
 </template>
 
 <script type="text/javascript">
-  var Vue = require('vue');
-  var SimpleVueValidation = require('../../../src/');
-  var Validator = SimpleVueValidation.Validator;
+  import Vue from 'vue';
+  import SimpleVueValidation from '../../../src/';
+  const Validator = SimpleVueValidation.Validator;
 
   Vue.use(SimpleVueValidation);
 

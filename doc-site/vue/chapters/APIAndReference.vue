@@ -10,7 +10,8 @@
         in addition, you can provide the <span class="code">templates</span> option to provide localized error messages,
         the interaction mode,
         and the <span class="code">Promise</span> option to specify the promise library to use by <span class="code">$validate()</span> method.
-      <pre><code class="language-javascript">Vue.use(SimpleVueValidator, {templates: {...}, mode: 'interactive', Promise: require('bluebird')};</code></pre>
+      <pre><code class="language-javascript">import Promise from 'bluebird';
+Vue.use(SimpleVueValidator, {templates: {...}, mode: 'interactive', Promise};</code></pre>
       </p>
       <p>
         You can also use <span class="code">SimpleVueValidator.mixin</span> if you don't won't to register SimpleVueValidator globally,
@@ -295,6 +296,16 @@
             <td>String</td>
             <td>
               A utility method to format given args using given template.
+            </td>
+          </tr>
+          <tr>
+            <td>hasImmediateError</td>
+            <td>none</td>
+            <td>Boolean</td>
+            <td>
+              A utility method to check if there's any immediate error in current validator.
+              <br/>
+              This method can be used to skip async validation if there's already some error there, referer to <a href="https://github.com/semisleep/simple-vue-validator/issues/43" target="_blank">this thread</a> to see it's usage.
             </td>
           </tr>
           </tbody>

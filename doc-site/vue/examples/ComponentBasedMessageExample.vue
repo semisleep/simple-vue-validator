@@ -9,9 +9,9 @@
 </template>
 
 <script type="text/javascript">
-  var Vue = require('vue');
-  var SimpleVueValidation = require('../../../src/');
-  var Validator = SimpleVueValidation.Validator.create({templates: {
+  import Vue from 'vue';
+  import SimpleVueValidation from '../../../src/';
+  const Validator = SimpleVueValidation.Validator.create({templates: {
     url: 'That doesn\'t look like a valid url.'
   }});
 

@@ -12,9 +12,9 @@
 <script type="text/javascript">
   'use strict';
 
-  var _ = require('lodash');
-  var $ = require('jquery');
-  require('icheck');
+  import _ from 'lodash';
+  import $ from 'jquery';
+  import 'icheck';
 
   module.exports = {
     name: 'Radio',

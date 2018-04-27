@@ -38,12 +38,13 @@
     <div id="configuration" class="section-title">Configuration</div>
     <div class="section-content">
       You can import the library and use as a Vue plugin to enable the functionality globally on all components containing validation configuration.
-      <pre><code class="language-javascript">var Vue = require('vue');
-var SimpleVueValidation = require('simple-vue-validator');
+      <pre><code class="language-javascript">import Vue from 'vue';
+import SimpleVueValidation from 'simple-vue-validator';
 Vue.use(SimpleVueValidation);</code></pre>
       Alternatively it is possible to import a mixin directly to components in which it will be used.
-      <pre><code class="language-javascript">var Component = Vue.extend({
-  mixins: [require('simple-vue-validator').mixin],
+      <pre><code class="language-javascript">import SimpleVueValidator from 'simple-vue-validator';
+let Component = Vue.extend({
+  mixins: [SimpleVueValidator.mixin],
   validators: { ... }
 })</code></pre>
     </div>

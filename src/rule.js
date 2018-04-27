@@ -161,7 +161,7 @@ Rule.prototype.length = function (length, message) {
         this._messages.push(message || utils.format(this.templates.length, length));
     }
     return this;
-}
+};
 
 Rule.prototype.minLength = function (length, message) {
     var value = this._checkValue();
@@ -169,7 +169,7 @@ Rule.prototype.minLength = function (length, message) {
         this._messages.push(message || utils.format(this.templates.minLength, length));
     }
     return this;
-}
+};
 
 Rule.prototype.maxLength = function (length, message) {
     var value = this._checkValue();
@@ -240,5 +240,14 @@ Rule.prototype.url = function (message) {
     return this.regex(/(http|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/, message || this.templates.url);
 };
 
-module.exports = Rule
+Rule.prototype.hasImmediateError = function () {
+  for (var i = 0; i < this._messages.length; i++) {
+    if (this._messages[i] && !this._messages[i].then) {
+      return true;
+    }
+  }
+  return false;
+};
+
+module.exports = Rule;
 

@@ -1,38 +1,62 @@
 'use strict';
 
-require('prismjs');
+import 'prismjs';
 
-var Vue = require('vue');
-var VueSimpleValidator = require('../src');
-var App = require('./vue/App.vue');
+import Vue from 'vue';
+import VueSimpleValidator from '../src';
+import App from './vue/App.vue';
+
+import LeftNavBar from './vue/LeftNavBar.vue';
+import MainContent from './vue/MainContent.vue';
+import DemoWithCode from './vue/DemoWithCode.vue';
+import GettingStarted from './vue/chapters/GettingStarted.vue';
+import UsagesAndExamples from './vue/chapters/UsagesAndExamples.vue';
+import Miscellaneous from './vue/chapters/Miscellaneous.vue';
+import APIAndReference from './vue/chapters/APIAndReference.vue';
+
+import BasicExample from './vue/examples/BasicExample.vue';
+import BuiltinRulesExample from './vue/examples/BuiltinRulesExample.vue';
+import CustomRuleExample from './vue/examples/CustomRuleExample.vue';
+import CrossFieldValidationExample1 from './vue/examples/CrossFieldValidationExample1.vue';
+import CrossFieldValidationExample2 from './vue/examples/CrossFieldValidationExample2.vue';
+import AsyncValidationExample1 from './vue/examples/AsyncValidationExample1.vue';
+import AsyncValidationExample2 from './vue/examples/AsyncValidationExample2.vue';
+import CheckboxGroup from './vue/examples/CheckboxGroup.vue';
+import CustomComponentExample from './vue/examples/CustomComponentExample.vue';
+import DynamicForm from './vue/examples/DynamicForm.vue';
+import DynamicFormExample from './vue/examples/DynamicFormExample.vue';
+import LocalizationExample from './vue/examples/LocalizationExample.vue';
+import ComponentBasedMessageExample from './vue/examples/ComponentBasedMessageExample.vue';
+import FieldBasedMessageExample from './vue/examples/FieldBasedMessageExample.vue';
 
 Vue.use(VueSimpleValidator);
 
-Vue.component('LeftNavBar', require('./vue/LeftNavBar.vue'));
-Vue.component('MainContent', require('./vue/MainContent.vue'));
-Vue.component('DemoWithCode', require('./vue/DemoWithCode.vue'));
+Vue.component('LeftNavBar', LeftNavBar);
+Vue.component('MainContent', MainContent);
+Vue.component('DemoWithCode', DemoWithCode);
 
 // chapters
-Vue.component('GettingStarted', require('./vue/chapters/GettingStarted.vue'));
-Vue.component('UsagesAndExamples', require('./vue/chapters/UsagesAndExamples.vue'));
-Vue.component('Miscellaneous', require('./vue/chapters/Miscellaneous.vue'));
-Vue.component('APIAndReference', require('./vue/chapters/APIAndReference.vue'));
+Vue.component('GettingStarted', GettingStarted);
+Vue.component('UsagesAndExamples', UsagesAndExamples);
+Vue.component('Miscellaneous', Miscellaneous);
+Vue.component('APIAndReference', APIAndReference);
+
 
 // examples
-Vue.component('BasicExample', require('./vue/examples/BasicExample.vue'));
-Vue.component('BuiltinRulesExample', require('./vue/examples/BuiltinRulesExample.vue'));
-Vue.component('CustomRuleExample', require('./vue/examples/CustomRuleExample.vue'));
-Vue.component('CrossFieldValidationExample1', require('./vue/examples/CrossFieldValidationExample1.vue'));
-Vue.component('CrossFieldValidationExample2', require('./vue/examples/CrossFieldValidationExample2.vue'));
-Vue.component('AsyncValidationExample1', require('./vue/examples/AsyncValidationExample1.vue'));
-Vue.component('AsyncValidationExample2', require('./vue/examples/AsyncValidationExample2.vue'));
-Vue.component('CheckboxGroup', require('./vue/examples/CheckboxGroup.vue'));
-Vue.component('CustomComponentExample', require('./vue/examples/CustomComponentExample.vue'));
-Vue.component('DynamicForm', require('./vue/examples/DynamicForm.vue'));
-Vue.component('DynamicFormExample', require('./vue/examples/DynamicFormExample.vue'));
-Vue.component('LocalizationExample', require('./vue/examples/LocalizationExample.vue'));
-Vue.component('ComponentBasedMessageExample', require('./vue/examples/ComponentBasedMessageExample.vue'));
-Vue.component('FieldBasedMessageExample', require('./vue/examples/FieldBasedMessageExample.vue'));
+Vue.component('BasicExample', BasicExample);
+Vue.component('BuiltinRulesExample', BuiltinRulesExample);
+Vue.component('CustomRuleExample', CustomRuleExample);
+Vue.component('CrossFieldValidationExample1', CrossFieldValidationExample1);
+Vue.component('CrossFieldValidationExample2', CrossFieldValidationExample2);
+Vue.component('AsyncValidationExample1', AsyncValidationExample1);
+Vue.component('AsyncValidationExample2', AsyncValidationExample2);
+Vue.component('CheckboxGroup', CheckboxGroup);
+Vue.component('CustomComponentExample', CustomComponentExample);
+Vue.component('DynamicForm', DynamicForm);
+Vue.component('DynamicFormExample', DynamicFormExample);
+Vue.component('LocalizationExample', LocalizationExample);
+Vue.component('ComponentBasedMessageExample', ComponentBasedMessageExample);
+Vue.component('FieldBasedMessageExample', FieldBasedMessageExample);
 
 new Vue({
   el: '#app',

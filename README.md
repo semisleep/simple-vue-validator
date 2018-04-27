@@ -26,8 +26,8 @@ NOTE: for bower package, please use /dist/plugin.js.
 
 ## Configuration
 ```
-var Vue = require('vue');
-var SimpleVueValidation = require('simple-vue-validator');
+import Vue from 'vue';
+import SimpleVueValidation from 'simple-vue-validator';
 Vue.use(SimpleVueValidation);
 ```
 
