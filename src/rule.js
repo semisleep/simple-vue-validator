@@ -193,7 +193,7 @@ Rule.prototype.lengthBetween = function (minLength, maxLength, message) {
 
 Rule.prototype.in = function (options, message) {
     var value = this._checkValue();
-    if (!utils.isEmpty(value) && !options.include(value)) {
+    if (!utils.isEmpty(value) && options.indexOf(value) < 0) {
         this._messages.push(message || utils.format(this.templates.in, this.templates.optionCombiner(options)));
     }
     return this;
@@ -201,7 +201,7 @@ Rule.prototype.in = function (options, message) {
 
 Rule.prototype.notIn = function (options, message) {
     var value = this._checkValue();
-    if (!utils.isEmpty(value) && options.includes(value)) {
+    if (!utils.isEmpty(value) && options.indexOf(value) >= 0) {
         this._messages.push(message || utils.format(this.templates.notIn, this.templates.optionCombiner(options)));
     }
     return this;
