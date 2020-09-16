@@ -16,7 +16,7 @@ var mixin = {
     }
   },
 
-  beforeDestroy: function () {
+  beforeUnmount: function () {
     unwatch(this.$options.validatorsUnwatchCallbacks);
   },
 
