@@ -2,6 +2,7 @@
 
 var utils = require('./utils');
 var ValidationBag = require('./validation-bag');
+var get = require('lodash.get');
 
 var mixin = {
 
@@ -176,10 +177,13 @@ function generateGetter(vm, property) {
 
 function watchProperties(vm, properties, callback) {
   return properties.map(function (property) {
-    return vm.$watch(property, function () {
-      vm.validation.setTouched(property);
-      callback.call();
-    });
+    return vm.$watch(
+      () => get(vm, property),
+      () => {
+        vm.validation.setTouched(property)
+        callback.call()
+      }
+    )
   });
 }
 
