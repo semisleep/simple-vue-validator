@@ -28,7 +28,8 @@
   "homepage": "https://github.com/semisleep/simple-vue-validator#readme",
   "dependencies": {
     "deep-equal": "1.0.1",
-    "es6-promise": "4.0.5"
+    "es6-promise": "4.0.5",
+    "lodash.get": "^4.4.2"
   },
   "devDependencies": {
     "@types/chai": "4.1.1",
