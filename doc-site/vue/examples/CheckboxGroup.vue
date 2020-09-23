@@ -60,7 +60,7 @@
       });
       this.updateValue(this.value);
     },
-    beforeDestroy: function() {
+    beforeUnmount: function() {
       var el = $(this.$el);
       var labels = el.find('label');
       var inputs = labels.find('input');

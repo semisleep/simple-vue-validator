@@ -9,8 +9,8 @@ var utils = require('./utils');
 /* plugin install
  ----------------------------------- */
 
-function install(Vue, options) {
-  Vue.mixin(mixin);
+function install(app, options) {
+  app.mixin(mixin);
   if (options && options.templates) {
     extendTemplates(options.templates);
   }
