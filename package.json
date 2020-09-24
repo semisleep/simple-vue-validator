@@ -1,6 +1,6 @@
 {
   "name": "simple-vue3-validator",
-  "version": "0.16.0",
+  "version": "1.0.0",
   "description": "lightweight yet flexible validation lib for vue.js - fork of simple-vue-validator",
   "main": "src/index.js",
   "scripts": {
