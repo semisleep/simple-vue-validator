@@ -178,8 +178,10 @@ function generateGetter(vm, property) {
 function watchProperties(vm, properties, callback) {
   return properties.map(function (property) {
     return vm.$watch(
-      () => get(vm, property),
-      () => {
+      function () {
+        return get(vm, property)
+      },
+      function () {
         vm.validation.setTouched(property)
         callback.call()
       }
