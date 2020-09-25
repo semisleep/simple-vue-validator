@@ -1,7 +1,7 @@
 {
-  "name": "simple-vue-validator",
-  "version": "0.16.0",
-  "description": "lightweight yet flexible validation lib for vue.js",
+  "name": "simple-vue3-validator",
+  "version": "1.0.0",
+  "description": "lightweight yet flexible validation lib for vue.js - fork of simple-vue-validator",
   "main": "src/index.js",
   "scripts": {
     "test": "mocha --require babel-core/register test/**/**.spec.js",
@@ -12,20 +12,28 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/semisleep/simple-vue-validator.git"
+    "url": "git+https://github.com/rak-phillip/simple-vue3-validator"
   },
   "keywords": [
     "validation",
     "form",
     "vue",
-    "vue.js"
+    "vue.js",
+    "vue3",
+    "vue 3"
   ],
   "author": "semisleep",
+  "contributors": [
+    {
+      "name": "rak-phillip",
+      "url": "https://github.com/rak-phillip"
+    }
+  ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/semisleep/simple-vue-validator/issues"
+    "url": "https://github.com/rak-phillip/simple-vue3-validator/issues"
   },
-  "homepage": "https://github.com/semisleep/simple-vue-validator#readme",
+  "homepage": "https://github.com/rak-phillip/simple-vue3-validator#readme",
   "dependencies": {
     "deep-equal": "1.0.1",
     "es6-promise": "4.0.5",
