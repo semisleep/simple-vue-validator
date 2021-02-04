@@ -5,8 +5,6 @@ var ValidationBag = require('./validation-bag');
 
 var mixin = {
 
-  Promise: null,
-
   beforeMount: function () {
     this.$setValidators(this.$options.validators);
 
