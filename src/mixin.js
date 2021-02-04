@@ -61,7 +61,7 @@ var mixin = {
           var validation = this.validation;
           var validateMethod = function () {
             if (utils.mode === 'conservative' && !validation.activated) { // do nothing if in conservative mode and $validate() method is not called before
-              return getPromise().resolve(false);
+              return Promise.resolve(false);
             }
             var args = getters.map(function (getter) {
               return getter();
@@ -74,7 +74,7 @@ var mixin = {
               }
               return this.validation.checkRule(rule);
             } else {
-              return getPromise().resolve(false);
+              return Promise.resolve(false);
             }
           }.bind(this);
 
@@ -88,7 +88,7 @@ var mixin = {
             var decoratedValidateMethod = function () {
               if (decoratedValidateMethod.sessionId !== this.validation.sessionId) {
                 // skip validation if it's reset before
-                return getPromise().resolve(false);
+                return Promise.resolve(false);
               }
               return validateMethod.apply(this, arguments);
             }.bind(this);
@@ -127,12 +127,12 @@ var mixin = {
         });
       }
       if (utils.isEmpty(validateMethods)) {
-        return getPromise().resolve(true);
+        return Promise.resolve(true);
       } else {
         var always = function() {
           this.validation._validate = null;
         }.bind(this);
-        this.validation._validate = getPromise()
+        this.validation._validate = Promise
           .all(validateMethods.map(function (validateMethod) {
             return validateMethod();
           }))
@@ -215,13 +215,6 @@ function cache(validator, option) {
       }
     }
   };
-}
-
-function getPromise() {
-  if (mixin.Promise) {
-    return mixin.Promise;
-  }
-  return require('es6-promise').Promise;
 }
 
 function findInCache(cache, args) {
