@@ -15,7 +15,7 @@ module.exports = {
   length: 'Length must be {0}.',
   minLength: 'Must have at least {0} characters.',
   maxLength: 'Must have up to {0} characters.',
-  lengthBetween: 'Length must between {0} and {1}.',
+  lengthBetween: 'Length must be between {0} and {1} characters.',
   in: 'Must be {0}.',
   notIn: 'Must not be {0}.',
   match: 'Not matched.',
