@@ -1,3 +1,8 @@
+
+# NOTE FOR VUE3
+
+Please use this fork if you are using vue3: [simple-vue3-validator](https://github.com/rak-phillip/simple-vue3-validator)
+
 # Simple Vue Validator
 
 Simple Vue validator is a lightweight yet flexible plugin for Vue.js 2.0 that allows you to validate input fields, and display errors. It watches changes of your model data, validates them and informs you with the validation result.
