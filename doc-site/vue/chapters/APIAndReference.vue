@@ -7,11 +7,10 @@
     <div class="section-content">
       <p>
         Installing the library is the same as other Vue plugins,
-        in addition, you can provide the <span class="code">templates</span> option to provide localized error messages,
-        the interaction mode,
-        and the <span class="code">Promise</span> option to specify the promise library to use by <span class="code">$validate()</span> method.
+        in addition, you can provide the <span class="code">templates</span> option to provide localized error messages and
+        the interaction mode.
       <pre><code class="language-javascript">import Promise from 'bluebird';
-Vue.use(SimpleVueValidator, {templates: {...}, mode: 'interactive', Promise};</code></pre>
+Vue.use(SimpleVueValidator, {templates: {...}, mode: 'interactive'};</code></pre>
       </p>
       <p>
         You can also use <span class="code">SimpleVueValidator.mixin</span> if you don't won't to register SimpleVueValidator globally,
