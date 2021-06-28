@@ -51,7 +51,7 @@
     "postcss-import": "10.0.0",
     "postcss-loader": "2.0.6",
     "postcss-url": "7.1.1",
-    "prismjs": "1.6.0",
+    "prismjs": "1.24.0",
     "style-loader": "0.18.2",
     "url-loader": "0.5.9",
     "vue": "2.5.13",
